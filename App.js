@@ -5,10 +5,10 @@ import AppLoading from "expo-app-loading";
 import { useFonts, MuktaVaani_400Regular } from "@expo-google-fonts/mukta-vaani";
 import { Archivo_600SemiBold } from "@expo-google-fonts/archivo";
 import { IBMPlexSans_400Regular } from "@expo-google-fonts/ibm-plex-sans";
-import { RegisterPatient } from "./src/views/RegisterPatient";
 import { theme } from "./src/styles/theme";
 
 import * as S from "./styles";
+import { Login } from "./src/views/Login";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -24,7 +24,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <S.Container>
-        <RegisterPatient />
+        <Login />
       </S.Container>
     </ThemeProvider>
   );
