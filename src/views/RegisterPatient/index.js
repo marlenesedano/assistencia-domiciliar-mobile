@@ -10,9 +10,19 @@ export function RegisterPatient() {
       <Title>Cadastro de Paciente</Title>
       <TextField placeholder="Nome completo" label="Nome completo" />
       <TextField placeholder="E-mail" label="E-mail" />
-      <TextField placeholder="Senha" label="Senha" />
-      <TextField placeholder="Telefone" label="Telefone" />
-      <TextField placeholder="Data de nascimento" label="Data de nascimento" />
+      <TextField type="password" placeholder="Senha" label="Senha" />
+      <TextField
+        mask="(99) 99999-9999"
+        placeholder="(99) 99999-9999"
+        keyboardType="numeric"
+        label="Telefone"
+      />
+      <TextField
+        mask="99/99/9999"
+        placeholder="DD/MM/AAAA"
+        keyboardType="numeric"
+        label="Data de nascimento"
+      />
       <Button margin="10px 0px">Criar Conta</Button>
       <Button type="secondary">Cancelar</Button>
     </S.Container>
