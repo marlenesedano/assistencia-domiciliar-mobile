@@ -1,7 +1,8 @@
 import { Title } from "../../components/Title";
 import { TextField } from "../../components/TextField";
-import * as S from "./styles";
 import { Button } from "../../components/Button";
+
+import * as S from "./styles";
 
 export function RegisterPatient() {
   return (
@@ -13,7 +14,7 @@ export function RegisterPatient() {
       <TextField placeholder="Telefone" label="Telefone" />
       <TextField placeholder="Data de nascimento" label="Data de nascimento" />
       <Button margin="10px 0px">Criar Conta</Button>
-      <Button>Cancelar</Button>
+      <Button type="secondary">Cancelar</Button>
     </S.Container>
   );
 }

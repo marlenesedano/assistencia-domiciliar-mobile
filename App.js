@@ -1,13 +1,16 @@
 import React from "react";
+import { ThemeProvider } from "styled-components";
 import { RegisterPatient } from "./src/views/RegisterPatient";
-// import { Title } from "./src/components/Title";
+import { theme } from "./src/styles/theme";
 
 import * as S from "./styles";
 
 export default function App() {
   return (
-    <S.Container>
-      <RegisterPatient />
-    </S.Container>
+    <ThemeProvider theme={theme}>
+      <S.Container>
+        <RegisterPatient />
+      </S.Container>
+    </ThemeProvider>
   );
 }
