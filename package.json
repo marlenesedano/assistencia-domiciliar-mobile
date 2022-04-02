@@ -10,7 +10,12 @@
     "lint": "eslint . --ext .js"
   },
   "dependencies": {
+    "@expo-google-fonts/archivo": "^0.2.2",
+    "@expo-google-fonts/ibm-plex-sans": "^0.2.2",
+    "@expo-google-fonts/mukta-vaani": "^0.2.2",
     "expo": "~44.0.2",
+    "expo-app-loading": "^1.3.0",
+    "expo-font": "~10.0.4",
     "expo-splash-screen": "~0.14.1",
     "expo-status-bar": "~1.2.0",
     "react": "17.0.1",

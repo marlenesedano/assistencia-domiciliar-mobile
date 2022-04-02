@@ -9,4 +9,5 @@ export const Container = styled.View`
 export const Title = styled.Text`
   font-size: 22px;
   padding-bottom: 30px;
+  font-family: Archivo_600SemiBold;
 `;

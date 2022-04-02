@@ -3,7 +3,10 @@ import styled from "styled-components/native";
 export const Label = styled.Text`
   color: ${({ type, theme }) =>
     type === "primary" ? theme.colors.white : theme.colors.primary};
+  font-family: MuktaVaani_400Regular;
+  font-size: 16px;
 `;
+
 export const Button = styled.TouchableOpacity`
   margin: ${(props) => props.margin || "0px"};
   border-radius: 50px;
