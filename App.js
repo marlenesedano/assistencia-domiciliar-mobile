@@ -8,7 +8,8 @@ import { IBMPlexSans_400Regular } from "@expo-google-fonts/ibm-plex-sans";
 import { theme } from "./src/styles/theme";
 
 import * as S from "./styles";
-import { Login } from "./src/views/Login";
+// import { Login } from "./src/views/Login";
+import { Register } from "./src/views/Register";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -24,7 +25,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <S.Container>
-        <Login />
+        <Register />
       </S.Container>
     </ThemeProvider>
   );
