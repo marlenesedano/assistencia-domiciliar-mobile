@@ -4,3 +4,9 @@ export const theme = {
     white: "#ffffff",
   },
 };
+
+export const navigationTheme = {
+  colors: {
+    background: "#fff",
+  },
+};

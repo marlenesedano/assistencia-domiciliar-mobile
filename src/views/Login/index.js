@@ -5,15 +5,17 @@ import { Button } from "../../components/Button";
 
 import * as S from "./styles";
 
-export function Login() {
+export function Login({ navigation }) {
   return (
     <S.Container>
-      <Title>Faça seu Login</Title>
+      <Title>Faça seu login</Title>
       <TextField placeholder="E-mail" label="E-mail" />
       <TextField type="password" placeholder="Senha" label="Senha" />
       <Line />
       <Button margin="10px 0px">Entrar</Button>
-      <Button type="secondary">Cadastre-se</Button>
+      <Button type="secondary" onPress={() => navigation.navigate("Register")}>
+        Cadastre-se
+      </Button>
     </S.Container>
   );
 }

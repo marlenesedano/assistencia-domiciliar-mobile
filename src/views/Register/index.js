@@ -1,7 +1,7 @@
 import { Button } from "../../components/Button";
 import * as S from "./styles";
 
-export function Register() {
+export function Register({ navigation }) {
   return (
     <S.Container>
       <S.ButtonContainer>
@@ -16,7 +16,12 @@ export function Register() {
           Se você é um paciente e deseja receber atendimento presencial, selecione a
           opção Sou Paciente.
         </S.Text>
-        <Button type="secondary">Sou Paciente</Button>
+        <Button
+          type="secondary"
+          onPress={() => navigation.navigate("RegisterPatient")}
+        >
+          Sou Paciente
+        </Button>
       </S.ButtonContainer>
     </S.Container>
   );

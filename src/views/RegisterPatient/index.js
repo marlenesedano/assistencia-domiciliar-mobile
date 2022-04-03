@@ -4,7 +4,7 @@ import { Button } from "../../components/Button";
 
 import * as S from "./styles";
 
-export function RegisterPatient() {
+export function RegisterPatient({ navigation }) {
   return (
     <S.Container>
       <Title>Cadastro de Paciente</Title>
@@ -24,7 +24,9 @@ export function RegisterPatient() {
         label="Data de nascimento"
       />
       <Button margin="10px 0px">Criar Conta</Button>
-      <Button type="secondary">Cancelar</Button>
+      <Button type="secondary" onPress={() => navigation.navigate("Login")}>
+        Cancelar
+      </Button>
     </S.Container>
   );
 }
