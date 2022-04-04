@@ -10,8 +10,8 @@ export function TextField({
   ...rest
 }) {
   return (
-    <S.Container error={error}>
-      {label && <S.Label>{label}</S.Label>}
+    <S.Container>
+      {label && <S.Label error={error}>{label}</S.Label>}
       {mask && (
         <S.MaskInput
           mask={mask}
@@ -20,7 +20,10 @@ export function TextField({
           {...rest}
         />
       )}
-      {!mask && <S.TextInput secureTextEntry={type === "password"} {...rest} />}
+      {!mask && (
+        <S.TextInput secureTextEntry={type === "password"} error={error} {...rest} />
+      )}
+      {!!error && <S.Label error={error}>{error}</S.Label>}
     </S.Container>
   );
 }

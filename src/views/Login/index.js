@@ -9,7 +9,7 @@ export function Login({ navigation }) {
   return (
     <S.Container>
       <Title>Faça seu login</Title>
-      <TextField placeholder="E-mail" label="E-mail" />
+      <TextField error="" placeholder="E-mail" label="E-mail" />
       <TextField type="password" placeholder="Senha" label="Senha" />
       <Line />
       <Button margin="10px 0px">Entrar</Button>
