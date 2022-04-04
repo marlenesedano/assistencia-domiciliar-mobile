@@ -4,12 +4,13 @@ export function TextField({
   label,
   mask,
   type,
+  error,
   keyboardType,
   onChangeText,
   ...rest
 }) {
   return (
-    <S.Container>
+    <S.Container error={error}>
       {label && <S.Label>{label}</S.Label>}
       {mask && (
         <S.MaskInput
