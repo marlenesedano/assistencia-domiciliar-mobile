@@ -13,6 +13,7 @@
     "@expo-google-fonts/archivo": "^0.2.2",
     "@expo-google-fonts/ibm-plex-sans": "^0.2.2",
     "@expo-google-fonts/mukta-vaani": "^0.2.2",
+    "@expo/vector-icons": "^12.0.5",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.1",
     "expo": "~44.0.2",

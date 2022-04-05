@@ -7,22 +7,32 @@ export function TextField({
   error,
   keyboardType,
   onChangeText,
+  icon,
   ...rest
 }) {
   return (
     <S.Container>
       {label && <S.Label error={error}>{label}</S.Label>}
-      {mask && (
-        <S.MaskInput
-          mask={mask}
-          keyboardType={keyboardType}
-          onChangeText={onChangeText || (() => {})}
-          {...rest}
-        />
-      )}
-      {!mask && (
-        <S.TextInput secureTextEntry={type === "password"} error={error} {...rest} />
-      )}
+      <S.InputContainer error={error}>
+        {!!icon && <S.Icon name={icon} size={28} color="#494949" />}
+        {mask && (
+          <S.MaskInput
+            mask={mask}
+            keyboardType={keyboardType}
+            onChangeText={onChangeText || (() => {})}
+            icon={icon}
+            {...rest}
+          />
+        )}
+        {!mask && (
+          <S.TextInput
+            secureTextEntry={type === "password"}
+            error={error}
+            icon={icon}
+            {...rest}
+          />
+        )}
+      </S.InputContainer>
       {!!error && <S.Label error={error}>{error}</S.Label>}
     </S.Container>
   );

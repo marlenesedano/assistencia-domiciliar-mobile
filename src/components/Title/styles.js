@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 export const Container = styled.View`
   width: 100%;
   justify-content: center;
-  align-items: center;
+  align-items: ${({ center }) => (center ? "center" : "flex-start")};
 `;
 
 export const Title = styled.Text`
