@@ -8,12 +8,13 @@ export function TextField({
   keyboardType,
   onChangeText,
   icon,
+  multiline,
   ...rest
 }) {
   return (
     <S.Container>
       {label && <S.Label error={error}>{label}</S.Label>}
-      <S.InputContainer error={error}>
+      <S.InputContainer error={error} multiline={multiline}>
         {!!icon && <S.Icon name={icon} size={28} color="#494949" />}
         {mask && (
           <S.MaskInput
@@ -29,6 +30,7 @@ export function TextField({
             secureTextEntry={type === "password"}
             error={error}
             icon={icon}
+            multiline={multiline}
             {...rest}
           />
         )}

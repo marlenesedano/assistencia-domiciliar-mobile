@@ -9,14 +9,15 @@ export const Icon = styled(Ionicons)`
 `;
 
 export const InputContainer = styled.View`
-  ${({ error }) => css`
+  ${({ error, multiline }) => css`
     border: 1px;
-    border-radius: 50px;
+    border-radius: ${multiline ? "16px" : "50px"};
     border-color: ${error ? "#ff7788" : "#494949"};
     margin-bottom: ${error ? "8px" : "15px"};
     display: flex;
     flex-direction: row;
     align-items: center;
+    max-height: ${multiline ? "125px" : "auto"};
   `}
 `;
 

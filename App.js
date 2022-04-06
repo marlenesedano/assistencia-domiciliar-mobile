@@ -12,7 +12,9 @@ import { theme, navigationTheme } from "./src/styles/theme";
 import { Login } from "./src/views/Login";
 import { Register } from "./src/views/Register";
 import { RegisterPatient } from "./src/views/RegisterPatient";
+import { RegisterProfessional } from "./src/views/RegisterProfessional";
 import { ProfessionalSearch } from "./src/views/ProfessionalSearch";
+import { RegisterProfessionalNext } from "./src/views/RegisterProfessionalNext";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -34,6 +36,11 @@ export default function App() {
           <Screen name="Login" component={Login} />
           <Screen name="Register" component={Register} />
           <Screen name="RegisterPatient" component={RegisterPatient} />
+          <Screen name="RegisterProfessional" component={RegisterProfessional} />
+          <Screen
+            name="RegisterProfessionalNext"
+            component={RegisterProfessionalNext}
+          />
           <Screen name="ProfessionalSearch" component={ProfessionalSearch} />
         </Navigator>
       </NavigationContainer>
