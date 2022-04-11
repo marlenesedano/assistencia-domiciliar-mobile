@@ -9,8 +9,6 @@ import * as S from "./styles";
 import { PickerSelect } from "../../components/PickerSelect";
 import { TextField } from "../../components/TextField";
 
-// import { Check } from "../../components/Check";
-
 export function RegisterProfessionalNext({ navigation }) {
   const [checked, setChecked] = React.useState(false);
   return (

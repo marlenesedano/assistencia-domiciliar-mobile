@@ -15,6 +15,7 @@ import { RegisterPatient } from "./src/views/RegisterPatient";
 import { RegisterProfessional } from "./src/views/RegisterProfessional";
 import { ProfessionalSearch } from "./src/views/ProfessionalSearch";
 import { RegisterProfessionalNext } from "./src/views/RegisterProfessionalNext";
+import { ServiceModality } from "./src/views/ServiceModality";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -42,6 +43,7 @@ export default function App() {
             component={RegisterProfessionalNext}
           />
           <Screen name="ProfessionalSearch" component={ProfessionalSearch} />
+          <Screen name="ServiceModality" component={ServiceModality} />
         </Navigator>
       </NavigationContainer>
     </ThemeProvider>
