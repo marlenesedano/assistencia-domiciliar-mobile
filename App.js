@@ -16,6 +16,7 @@ import { RegisterProfessional } from "./src/views/RegisterProfessional";
 import { ProfessionalSearch } from "./src/views/ProfessionalSearch";
 import { RegisterProfessionalNext } from "./src/views/RegisterProfessionalNext";
 import { ServiceModality } from "./src/views/ServiceModality";
+import { PresencialService } from "./src/views/PresencialService";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -38,6 +39,7 @@ export default function App() {
           <Screen name="Register" component={Register} />
           <Screen name="RegisterPatient" component={RegisterPatient} />
           <Screen name="RegisterProfessional" component={RegisterProfessional} />
+          <Screen name="PresencialService" component={PresencialService} />
           <Screen
             name="RegisterProfessionalNext"
             component={RegisterProfessionalNext}

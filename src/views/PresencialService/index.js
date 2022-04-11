@@ -1,29 +1,13 @@
-import { Title } from "../../components/Title";
-import { TextField } from "../../components/TextField";
-import { Button } from "../../components/Button";
-import { Line } from "../../components/Line";
-import { PickerSelect } from "../../components/PickerSelect";
+/* eslint-disable import/newline-after-import */
 import * as S from "./styles";
-
-export function RegisterProfessional({ navigation }) {
+import { PickerSelect } from "../../components/PickerSelect";
+import { Title } from "../../components/Title";
+import { Line } from "../../components/Line";
+import { Button } from "../../components/Button";
+export function PresencialService() {
   return (
     <S.Container>
-      <Title>Cadastro de Profissional</Title>
-      <TextField placeholder="Nome completo" label="Nome completo" />
-      <TextField placeholder="E-mail" label="E-mail" />
-      <TextField type="password" placeholder="Senha" label="Senha" />
-      <TextField
-        type="password"
-        placeholder="Confirme a senha"
-        label="Confirmar Senha"
-      />
-      <TextField
-        mask="(99) 99999-9999"
-        placeholder="(99) 99999-9999"
-        keyboardType="numeric"
-        label="Telefone"
-      />
-      <S.Label>Especialidades</S.Label>
+      <Title>Buscar atendimento presencial</Title>
       <PickerSelect
         items={[
           { value: "", label: "Escolha uma especialidade:" },
@@ -42,14 +26,13 @@ export function RegisterProfessional({ navigation }) {
           { value: "therapist", label: "Terapeuta" },
         ]}
       />
+      <S.Label>Estado</S.Label>
+      <PickerSelect items={[{ value: "", label: "Escolha uma especialidade" }]} />
+      <S.Label>Cidade</S.Label>
+      <PickerSelect items={[{ value: "", label: "Escolha uma especialidade" }]} />
       <Line />
-      <Button
-        margin="10px 0px"
-        onPress={() => navigation.navigate("RegisterProfessionalNext")}
-      >
-        Próximo
-      </Button>
-      <Button type="secondary" onPress={() => navigation.navigate("Login")}>
+      <Button margin="20px 0px">Buscar</Button>
+      <Button margin="10px 0px" type="secundary">
         Cancelar
       </Button>
     </S.Container>

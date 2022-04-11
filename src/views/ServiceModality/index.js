@@ -7,7 +7,12 @@ export function ServiceModality({ navigation }) {
   return (
     <S.Container>
       <Title>Selecione uma modalidade</Title>
-      <Button type="secondary" margin="20px 0px" icon="briefcase-medical">
+      <Button
+        type="secondary"
+        margin="20px 0px"
+        icon="briefcase-medical"
+        onPress={() => navigation.navigate("PresencialService")}
+      >
         Atendimento Presencial
       </Button>
       <Button type="secondary" margin="10px 0px" icon="camera">
