@@ -18,6 +18,7 @@ import { RegisterProfessionalNext } from "./src/views/RegisterProfessionalNext";
 import { ServiceModality } from "./src/views/ServiceModality";
 import { RemoteService } from "./src/views/RemoteService";
 import { PresencialService } from "./src/views/PresencialService";
+import { NewSchedule } from "./src/views/NewSchedule";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -48,6 +49,7 @@ export default function App() {
             component={RegisterProfessionalNext}
           />
           <Screen name="ServiceModality" component={ServiceModality} />
+          <Screen name="NewSchedule" component={NewSchedule} />
         </Navigator>
       </NavigationContainer>
     </ThemeProvider>

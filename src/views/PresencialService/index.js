@@ -4,7 +4,7 @@ import { PickerSelect } from "../../components/PickerSelect";
 import { Title } from "../../components/Title";
 import { Line } from "../../components/Line";
 import { Button } from "../../components/Button";
-export function PresencialService() {
+export function PresencialService({ navigation }) {
   return (
     <S.Container>
       <Title>Buscar atendimento presencial</Title>
@@ -31,7 +31,9 @@ export function PresencialService() {
       <S.Label>Cidade</S.Label>
       <PickerSelect items={[{ value: "", label: "Escolha uma especialidade" }]} />
       <Line />
-      <Button margin="20px 0px">Buscar</Button>
+      <Button margin="20px 0px" onPress={() => navigation.navigate("NewSchedule")}>
+        Buscar
+      </Button>
       <Button margin="10px 0px" type="secundary">
         Cancelar
       </Button>
