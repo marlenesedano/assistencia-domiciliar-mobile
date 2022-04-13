@@ -15,7 +15,12 @@ export function ServiceModality({ navigation }) {
       >
         Atendimento Presencial
       </Button>
-      <Button type="secondary" margin="10px 0px" icon="camera">
+      <Button
+        type="secondary"
+        margin="10px 0px"
+        icon="camera"
+        onPress={() => navigation.navigate("RemoteService")}
+      >
         Atendimento Remoto
       </Button>
       <Line />
