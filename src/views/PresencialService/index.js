@@ -8,6 +8,7 @@ export function PresencialService({ navigation }) {
   return (
     <S.Container>
       <Title>Buscar atendimento presencial</Title>
+      <S.Label>Escolha uma especialidade</S.Label>
       <PickerSelect
         items={[
           { value: "", label: "Escolha uma especialidade:" },
@@ -27,11 +28,14 @@ export function PresencialService({ navigation }) {
         ]}
       />
       <S.Label>Estado</S.Label>
-      <PickerSelect items={[{ value: "", label: "Escolha uma especialidade" }]} />
+      <PickerSelect items={[{ value: "", label: "Escolha um estado" }]} />
       <S.Label>Cidade</S.Label>
-      <PickerSelect items={[{ value: "", label: "Escolha uma especialidade" }]} />
+      <PickerSelect items={[{ value: "", label: "Escolha uma cidade" }]} />
       <Line />
-      <Button margin="20px 0px" onPress={() => navigation.navigate("NewSchedule")}>
+      <Button
+        margin="20px 0px"
+        onPress={() => navigation.navigate("SearchProfessionalProfile")}
+      >
         Buscar
       </Button>
       <Button margin="10px 0px" type="secundary">
