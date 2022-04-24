@@ -21,6 +21,7 @@ import { PresencialService } from "./src/views/PresencialService";
 import { NewSchedule } from "./src/views/NewSchedule";
 import { SearchProfessionalProfile } from "./src/views/SearchProfessionalProfile";
 import { AttendanceList } from "./src/views/AttendanceList";
+import { Schedule } from "./src/views/Schedule";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -53,6 +54,7 @@ export default function App() {
           <Screen name="ServiceModality" component={ServiceModality} />
           <Screen name="NewSchedule" component={NewSchedule} />
           <Screen name="AttendanceList" component={AttendanceList} />
+          <Screen name="Schedule" component={Schedule} />
           <Screen
             name="SearchProfessionalProfile"
             component={SearchProfessionalProfile}
