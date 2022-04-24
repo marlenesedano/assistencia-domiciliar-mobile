@@ -16,16 +16,19 @@ export function AttendanceList({ navigation }) {
         personName="Marlene Atendimento"
         scheduleDate="21/08 13:00"
         status="cancel"
+        onPress={() => navigation.navigate("Schedule")}
       />
       <Attendance
         personName="Marlene Atendimento"
         scheduleDate="21/08 13:00"
         status="accepted"
+        onPress={() => navigation.navigate("Schedule")}
       />
       <Attendance
         personName="Marlene Atendimento"
         scheduleDate="21/08 13:00"
         status="checked"
+        onPress={() => navigation.navigate("Schedule")}
       />
     </S.Container>
   );
