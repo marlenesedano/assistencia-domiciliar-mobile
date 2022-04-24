@@ -12,10 +12,7 @@ export function Login({ navigation }) {
       <TextField error="" placeholder="E-mail" label="E-mail" />
       <TextField type="password" placeholder="Senha" label="Senha" />
       <Line />
-      <Button
-        margin="10px 0px"
-        onPress={() => navigation.navigate("ProfessionalSearch")}
-      >
+      <Button margin="10px 0px" onPress={() => navigation.navigate("PatientTabs")}>
         Entrar
       </Button>
       <Button type="secondary" onPress={() => navigation.navigate("Register")}>
