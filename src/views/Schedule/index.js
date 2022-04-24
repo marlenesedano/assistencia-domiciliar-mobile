@@ -4,7 +4,7 @@ import { Line } from "../../components/Line";
 import { Title } from "../../components/Title";
 import * as S from "./styles";
 
-export function Schedule() {
+export function Schedule({ navigation }) {
   return (
     <S.Container>
       <Title>Agendamento</Title>
@@ -28,7 +28,12 @@ export function Schedule() {
         <S.LabelAdress>Complemento: Bloco K, apto 104</S.LabelAdress>
       </S.Whapper>
       <Line />
-      <Button margin="10px 0px 0px 0px">Aceitar</Button>
+      <Button
+        margin="10px 0px 0px 0px"
+        onPress={() => navigation.navigate("PatientEvaluation")}
+      >
+        Aceitar
+      </Button>
       <Button margin="20px 0px 0px 0px" type="secondary">
         Recusar
       </Button>
