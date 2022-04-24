@@ -10,7 +10,7 @@ import { Line } from "../../components/Line";
 import { Button } from "../../components/Button";
 import * as S from "./styles";
 
-export function SearchProfessionalProfile() {
+export function SearchProfessionalProfile({ navigation }) {
   return (
     <S.Container>
       <S.Header>
@@ -36,7 +36,12 @@ export function SearchProfessionalProfile() {
       </S.Content>
       <TextField numberOfLines={10} multiline />
       <Line />
-      <Button margin="15px 0px 0px 0px">Novo Agendamento</Button>
+      <Button
+        margin="15px 0px 0px 0px"
+        onPress={() => navigation.navigate("NewSchedule")}
+      >
+        Novo Agendamento
+      </Button>
       <Button margin="10px 0px 0px 0px" type="secondary">
         Voltar
       </Button>
