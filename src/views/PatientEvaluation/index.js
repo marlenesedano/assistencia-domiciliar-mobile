@@ -9,7 +9,9 @@ export function PatientEvaluation() {
     <S.Container>
       <Title>Avaliações dos seus pacientes</Title>
       <S.Whapper>
-        <S.Average>4,0</S.Average>
+        <S.AverageContainer>
+          <S.Average>4,0</S.Average>
+        </S.AverageContainer>
         <S.Content>
           <Star />
           <S.Label>Média entre X opiniões</S.Label>

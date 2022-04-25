@@ -9,6 +9,8 @@ export const Whapper = styled.View`
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
+  align-items: center;
+  justify-content: center;
 `;
 export const Content = styled.View`
   margin-left: 16px;
@@ -17,11 +19,14 @@ export const Label = styled.Text`
   font-family: MuktaVaani_400Regular;
   font-size: 16px;
 `;
-export const Average = styled.Text`
+
+export const AverageContainer = styled.View`
   border: 1px;
   border-radius: 10px;
-  padding: 10px;
-  display: flex;
+  padding: 12px 16px 10px 16px;
+`;
+
+export const Average = styled.Text`
   align-items: center;
   justify-content: center;
   font-family: MuktaVaani_400Regular;
@@ -35,7 +40,7 @@ export const ContentEvaluation = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 20px;
+  margin-top: 12px;
 `;
 export const WhaperEvaluation = styled.View`
   margin-left: 20px;
@@ -50,12 +55,10 @@ export const NamePatient = styled.Text`
 export const Evaluation = styled.View`
   display: flex;
   flex-direction: row;
-  /* background: red; */
   width: 50%;
   align-items: center;
 `;
 export const DateEvaluation = styled.Text`
-  /* margin-left: 15px; */
   font-size: 16px;
   color: #696969;
 `;
