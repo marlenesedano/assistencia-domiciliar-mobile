@@ -24,6 +24,7 @@ import { AttendanceList } from "./src/views/AttendanceList";
 import { Schedule } from "./src/views/Schedule";
 import { PatientEvaluation } from "./src/views/PatientEvaluation";
 import { PatientTabs } from "./src/views/PatientTabs";
+import { ProfessionalTabs } from "./src/views/ProfessionalTabs";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -59,6 +60,7 @@ export default function App() {
           <Screen name="AttendanceList" component={AttendanceList} />
           <Screen name="Schedule" component={Schedule} />
           <Screen name="PatientTabs" component={PatientTabs} />
+          <Screen name="ProfessionalTabs" component={ProfessionalTabs} />
           <Screen
             name="SearchProfessionalProfile"
             component={SearchProfessionalProfile}
