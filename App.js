@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import React from "react";
+import { LogBox } from "react-native";
 
 import AppLoading from "expo-app-loading";
 import { NavigationContainer } from "@react-navigation/native";
@@ -29,6 +30,8 @@ import { ProfessionalTabs } from "./src/views/ProfessionalTabs";
 const { Navigator, Screen } = createNativeStackNavigator();
 
 export default function App() {
+  LogBox.ignoreLogs(["Setting a timer"]);
+
   const [fontsLoaded] = useFonts({
     MuktaVaani_400Regular,
     Archivo_600SemiBold,

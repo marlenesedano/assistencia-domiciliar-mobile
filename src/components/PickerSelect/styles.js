@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { Picker } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 
 export const Container = styled.View`
   border: 1px;

@@ -14,6 +14,7 @@
     "@expo-google-fonts/ibm-plex-sans": "^0.2.2",
     "@expo-google-fonts/mukta-vaani": "^0.2.2",
     "@expo/vector-icons": "^12.0.5",
+    "@react-native-picker/picker": "^2.4.1",
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.1",
@@ -22,6 +23,7 @@
     "expo-font": "~10.0.4",
     "expo-splash-screen": "~0.14.1",
     "expo-status-bar": "~1.2.0",
+    "firebase": "^9.7.0",
     "node-fetch": "^3.2.3",
     "react": "17.0.1",
     "react-dom": "17.0.1",
@@ -31,7 +33,8 @@
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
     "react-native-web": "0.17.1",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "zod": "^3.14.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

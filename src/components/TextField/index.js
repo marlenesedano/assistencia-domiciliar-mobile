@@ -30,6 +30,7 @@ export function TextField({
             secureTextEntry={type === "password"}
             error={error}
             icon={icon}
+            onChangeText={onChangeText}
             multiline={multiline}
             {...rest}
           />
