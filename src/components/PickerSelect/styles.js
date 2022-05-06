@@ -11,10 +11,11 @@ export const Container = styled.View`
 export const PickerSelect = styled(Picker)`
   border: 1px;
   border-color: #494949;
-  padding: 0px 10px;
   width: 100%;
   height: 40px;
   margin-left: 10px;
+  margin-top: -8px;
+  margin-bottom: 8px;
 `;
 
 export const PickerItem = styled(Picker.Item)`
