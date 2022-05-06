@@ -26,3 +26,7 @@ export const Button = styled.TouchableOpacity`
   flex-direction: row;
   justify-content: center;
 `;
+
+export const Load = styled.ActivityIndicator.attrs(({ theme }) => ({
+  color: theme.colors.white,
+}))``;

@@ -11,6 +11,7 @@ import { auth } from "../../services/firebase";
 import * as S from "./styles";
 
 export function Login({ navigation }) {
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -19,13 +20,15 @@ export function Login({ navigation }) {
     const validationErrors = schema.validate({ email, password });
 
     if (Object.keys(validationErrors).length === 0) {
+      setLoading(true);
       signInWithEmailAndPassword(auth, email, password)
         .then(() => {
           navigation.navigate("PatientTabs");
         })
         .catch(() => {
           Alert.alert("Ops", "Usuário ou senha inválido.");
-        });
+        })
+        .finally(() => setLoading(false));
     }
 
     setErrors(validationErrors);
@@ -48,7 +51,7 @@ export function Login({ navigation }) {
         onChangeText={(value) => setPassword(value)}
       />
       <Line />
-      <Button margin="10px 0px" onPress={handleSubmit}>
+      <Button margin="10px 0px" onPress={handleSubmit} isLoading={loading}>
         Entrar
       </Button>
       <Button type="secondary" onPress={() => navigation.navigate("Register")}>
