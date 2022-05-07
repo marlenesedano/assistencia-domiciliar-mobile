@@ -7,6 +7,7 @@ import { TextField } from "../../components/TextField";
 import { Button } from "../../components/Button";
 import { schema } from "./schema";
 import { auth } from "../../services/firebase";
+import { getProfile } from "../../services/user";
 
 import * as S from "./styles";
 
@@ -21,9 +22,17 @@ export function Login({ navigation }) {
 
     if (Object.keys(validationErrors).length === 0) {
       setLoading(true);
+      const profile = await getProfile(email);
+
       signInWithEmailAndPassword(auth, email, password)
         .then(() => {
-          navigation.navigate("PatientTabs");
+          if (profile?.type === "professional") {
+            navigation.navigate("ProfessionalTabs");
+          } else if (profile?.type === "patient") {
+            navigation.navigate("PatientTabs");
+          } else {
+            Alert.alert("Ops", "Usuário não encontrado");
+          }
         })
         .catch(() => {
           Alert.alert("Ops", "Usuário ou senha inválido.");

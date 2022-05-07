@@ -2,6 +2,13 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc, getDoc } from "firebase/firestore";
 import { auth, db } from "./firebase";
 
+export async function getPatientByEmail(email) {
+  const docRef = doc(db, "patients", email);
+  const docSnap = await getDoc(docRef);
+
+  return docSnap.data();
+}
+
 export async function existsPatientByEmail(email) {
   const docRef = doc(db, "patients", email);
   const docSnap = await getDoc(docRef);
