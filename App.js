@@ -26,6 +26,7 @@ import { Schedule } from "./src/views/Schedule";
 import { PatientEvaluation } from "./src/views/PatientEvaluation";
 import { PatientTabs } from "./src/views/PatientTabs";
 import { ProfessionalTabs } from "./src/views/ProfessionalTabs";
+import { ProfileProvider } from "./src/context/ProfileContext";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -44,32 +45,34 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <NavigationContainer theme={navigationTheme}>
-        <Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
-          <Screen name="Login" component={Login} />
-          <Screen name="Register" component={Register} />
-          <Screen name="RegisterPatient" component={RegisterPatient} />
-          <Screen name="RegisterProfessional" component={RegisterProfessional} />
-          <Screen name="PresencialService" component={PresencialService} />
-          <Screen name="ProfessionalSearch" component={ProfessionalSearch} />
-          <Screen name="RemoteService" component={RemoteService} />
-          <Screen name="PatientEvaluation" component={PatientEvaluation} />
-          <Screen
-            name="RegisterProfessionalNext"
-            component={RegisterProfessionalNext}
-          />
-          <Screen name="ServiceModality" component={ServiceModality} />
-          <Screen name="NewSchedule" component={NewSchedule} />
-          <Screen name="AttendanceList" component={AttendanceList} />
-          <Screen name="Schedule" component={Schedule} />
-          <Screen name="PatientTabs" component={PatientTabs} />
-          <Screen name="ProfessionalTabs" component={ProfessionalTabs} />
-          <Screen
-            name="SearchProfessionalProfile"
-            component={SearchProfessionalProfile}
-          />
-        </Navigator>
-      </NavigationContainer>
+      <ProfileProvider>
+        <NavigationContainer theme={navigationTheme}>
+          <Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+            <Screen name="Login" component={Login} />
+            <Screen name="Register" component={Register} />
+            <Screen name="RegisterPatient" component={RegisterPatient} />
+            <Screen name="RegisterProfessional" component={RegisterProfessional} />
+            <Screen name="PresencialService" component={PresencialService} />
+            <Screen name="ProfessionalSearch" component={ProfessionalSearch} />
+            <Screen name="RemoteService" component={RemoteService} />
+            <Screen name="PatientEvaluation" component={PatientEvaluation} />
+            <Screen
+              name="RegisterProfessionalNext"
+              component={RegisterProfessionalNext}
+            />
+            <Screen name="ServiceModality" component={ServiceModality} />
+            <Screen name="NewSchedule" component={NewSchedule} />
+            <Screen name="AttendanceList" component={AttendanceList} />
+            <Screen name="Schedule" component={Schedule} />
+            <Screen name="PatientTabs" component={PatientTabs} />
+            <Screen name="ProfessionalTabs" component={ProfessionalTabs} />
+            <Screen
+              name="SearchProfessionalProfile"
+              component={SearchProfessionalProfile}
+            />
+          </Navigator>
+        </NavigationContainer>
+      </ProfileProvider>
     </ThemeProvider>
   );
 }

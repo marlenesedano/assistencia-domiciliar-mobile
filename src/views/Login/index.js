@@ -10,8 +10,10 @@ import { auth } from "../../services/firebase";
 import { getProfile } from "../../services/user";
 
 import * as S from "./styles";
+import { useProfile } from "../../context/ProfileContext";
 
 export function Login({ navigation }) {
+  const { setProfile } = useProfile();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,13 +24,16 @@ export function Login({ navigation }) {
 
     if (Object.keys(validationErrors).length === 0) {
       setLoading(true);
+
       const profile = await getProfile(email);
 
       signInWithEmailAndPassword(auth, email, password)
         .then(() => {
           if (profile?.type === "professional") {
+            setProfile(profile);
             navigation.navigate("ProfessionalTabs");
           } else if (profile?.type === "patient") {
+            setProfile(profile);
             navigation.navigate("PatientTabs");
           } else {
             Alert.alert("Ops", "Usuário não encontrado");
