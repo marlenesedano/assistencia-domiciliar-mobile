@@ -1,4 +1,4 @@
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import { Picker } from "@react-native-picker/picker";
 
 export const Container = styled.View`
@@ -22,4 +22,13 @@ export const PickerItem = styled(Picker.Item)`
   border: 1px;
   border-color: #494949;
   padding: 0px 10px;
+`;
+
+export const Label = styled.Text`
+  ${({ error }) => css`
+    margin-bottom: 8px;
+    font-family: MuktaVaani_400Regular;
+    font-size: 16px;
+    color: ${error ? "#ff7788" : "#494949"};
+  `}
 `;
