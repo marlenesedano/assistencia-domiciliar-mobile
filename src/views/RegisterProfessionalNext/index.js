@@ -20,6 +20,7 @@ export function RegisterProfessionalNext({ route, navigation }) {
   const [acceptRemote, setAcceptRemote] = useState(false);
   const [description, setDescription] = useState("");
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
     const currentForm = {
@@ -32,6 +33,7 @@ export function RegisterProfessionalNext({ route, navigation }) {
     const validationErrors = schema.validate(currentForm);
 
     if (Object.keys(validationErrors).length === 0) {
+      setLoading(true);
       const professionalForm = { ...currentForm, ...route.params };
 
       const response = await createProfessional(professionalForm);
@@ -40,6 +42,7 @@ export function RegisterProfessionalNext({ route, navigation }) {
         Alert.alert("Ops", response);
       } else {
         navigation.navigate("Login", currentForm);
+        setLoading(false);
       }
     } else {
       setErrors(validationErrors);
@@ -106,7 +109,7 @@ export function RegisterProfessionalNext({ route, navigation }) {
         />
       </S.Content>
       <Line />
-      <Button margin="10px 0px" onPress={handleSubmit}>
+      <Button margin="10px 0px" onPress={handleSubmit} isLoading={loading}>
         Criar Conta
       </Button>
       <Button

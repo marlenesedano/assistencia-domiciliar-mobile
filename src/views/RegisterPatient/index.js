@@ -11,17 +11,19 @@ import * as S from "./styles";
 export function RegisterPatient({ navigation }) {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
-
+  const [loading, setLoading] = useState(false);
   const handleSubmit = async () => {
     const validationErrors = schema.validate(form);
 
     if (Object.keys(validationErrors).length === 0) {
+      setLoading(true);
       const response = await createPatient(form);
 
       if (response != null) {
         Alert.alert("Ops", response);
       } else {
         navigation.navigate("Login");
+        setLoading(false);
         return;
       }
     }
@@ -71,7 +73,7 @@ export function RegisterPatient({ navigation }) {
         onChangeText={(newValue) => updateForm("birthDate", newValue)}
         error={errors.birthDate}
       />
-      <Button margin="10px 0px" onPress={handleSubmit}>
+      <Button margin="10px 0px" onPress={handleSubmit} isLoading={loading}>
         Criar Conta
       </Button>
       <Button type="secondary" onPress={() => navigation.navigate("Login")}>
