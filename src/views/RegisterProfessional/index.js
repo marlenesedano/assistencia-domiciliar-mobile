@@ -7,6 +7,8 @@ import { Line } from "../../components/Line";
 import { PickerSelect } from "../../components/PickerSelect";
 import { ScrollBox } from "../../components/ScrollBox";
 
+import { specialties } from "../../services/specialty";
+
 import { schema } from "./schema";
 
 import * as S from "./styles";
@@ -67,22 +69,8 @@ export function RegisterProfessional({ navigation }) {
         <S.Label>Especialidades</S.Label>
         <PickerSelect
           onValueChange={handleSelectedSpecialty}
-          items={[
-            { value: "", label: "Escolha uma especialidade:" },
-            { value: "psychologist", label: "Psicólogo" },
-            { value: "nutritionist", label: "Nutricionista" },
-            { value: "psychiatrist", label: "Psiquiatra" },
-            { value: "physiologist", label: "Fisiologista" },
-            { value: "speechHerapist", label: "Fonoaudiólogo" },
-            { value: "auxOfNursing", label: "Aux. de Enfermagem" },
-            { value: "nurse", label: "Enfermeiro" },
-            { value: "nursingTechnician", label: "Técnico de Enfermagem" },
-            { value: "elderlyCaregiver", label: "Cuidador de Idoso" },
-            { value: "childCaregiver", label: "Cuidador de Criança" },
-            { value: "urologist", label: "Urologista" },
-            { value: "gynecologist", label: "Ginecologista" },
-            { value: "therapist", label: "Terapeuta" },
-          ]}
+          items={specialties}
+          error={errors.specialty}
         />
         <Line />
         <Button margin="10px 0px" onPress={handleNext}>

@@ -14,6 +14,7 @@ const zodSchema = z.object({
   phone: z
     .string({ required_error: "Campo obrigatório" })
     .min(15, { message: "Deve estar preenchido o telefone" }),
+  specialty: z.string({ required_error: "Informe uma especialidade" }),
 });
 
 export const schema = createSchema(zodSchema);

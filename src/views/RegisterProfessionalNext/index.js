@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Alert } from "react-native";
 import { Checkbox } from "react-native-paper";
 import { Title } from "../../components/Title";
 import { Button } from "../../components/Button";
@@ -12,73 +13,77 @@ import { schema } from "./schema";
 import * as S from "./styles";
 
 export function RegisterProfessionalNext({ route, navigation }) {
-  const [ufs, setUfs] = useState("");
-  const [selectedUf, setSelectedUf] = useState();
-  const [selectedCity, setSelectedCity] = useState();
+  const [states, setStates] = useState("");
+  const [selectedState, setSelectedState] = useState({ state: {} });
+  const [selectedCity, setSelectedCity] = useState({ city: {} });
   const [cities, setCities] = useState("");
   const [acceptRemote, setAcceptRemote] = useState(false);
   const [description, setDescription] = useState("");
   const [errors, setErrors] = useState({});
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const currentForm = {
-      uf: selectedUf,
+      state: selectedState,
       city: selectedCity,
       acceptRemote,
       description,
     };
 
     const validationErrors = schema.validate(currentForm);
+
     if (Object.keys(validationErrors).length === 0) {
-      navigation.navigate("ProfessionalTabs", currentForm);
-      return;
+      const professionalForm = { ...currentForm, ...route.params };
+
+      const response = await createProfessional(professionalForm);
+
+      if (response != null) {
+        Alert.alert("Ops", response);
+      } else {
+        navigation.navigate("Login", currentForm);
+      }
+    } else {
+      setErrors(validationErrors);
     }
-
-    setErrors(validationErrors);
-
-    const professionalForm = { ...currentForm, ...route.params };
-
-    createProfessional(professionalForm);
   };
 
   useEffect(() => {
     (async function loadUfs() {
       const response = await getUfs();
 
-      const pickerUfs = response.map((item) => {
-        return { value: item.sigla, label: item.nome };
+      const pickerStates = response.map((item) => {
+        return { value: { uf: item.sigla, name: item.nome }, label: item.nome };
       });
 
-      setUfs(pickerUfs);
+      setStates(pickerStates);
     })();
   }, []);
 
   useEffect(() => {
     (async function loadCities() {
-      const response = await getCities(selectedUf);
+      const response = await getCities(selectedState.uf);
 
       const pickerCities = response.map((item) => {
-        return { value: item.id, label: item.nome };
+        return { value: { id: item.id, name: item.nome }, label: item.nome };
       });
 
       setCities(pickerCities);
     })();
-  }, [selectedUf]);
+  }, [selectedState]);
 
   return (
     <S.Container>
       <Title>Cadastro de Profissional</Title>
       <S.Label>Estado</S.Label>
       <PickerSelect
-        items={[{ value: "", label: "Escolha seu estado" }, ...ufs]}
-        onValueChange={(value) => setSelectedUf(value)}
-        error={errors.uf}
+        items={[{ value: {}, label: "Escolha seu estado" }, ...states]}
+        onValueChange={(value) => setSelectedState(value)}
+        error={errors["state.uf"]}
       />
       <S.Label>Cidade</S.Label>
       <PickerSelect
-        items={[{ value: "", label: "Escolha sua cidade" }, ...cities]}
+        items={[{ value: {}, label: "Escolha sua cidade" }, ...cities]}
         onValueChange={(value) => setSelectedCity(value)}
-        error={errors.city}
+        error={errors["city.id"]}
       />
       <S.Content>
         <Checkbox

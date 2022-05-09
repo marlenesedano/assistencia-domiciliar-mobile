@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import * as S from "./styles";
 
 export function PickerSelect({ items, onValueChange, error }) {
-  const [selectedValue, setSelectedValue] = useState("");
+  const [selectedValue, setSelectedValue] = useState();
 
   return (
     <>
