@@ -30,11 +30,7 @@ export function ProfessionalSearch({ navigation }) {
       </Button>
       <S.ListProfessionals>
         {professionals.map((professional) => (
-          <ProfessionalCard
-            professional={professional.name}
-            specialty={professional.specialty}
-            navigation={navigation}
-          />
+          <ProfessionalCard professional={professional} navigation={navigation} />
         ))}
       </S.ListProfessionals>
     </S.Container>

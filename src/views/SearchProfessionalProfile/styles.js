@@ -35,7 +35,7 @@ export const Label = styled.Text`
 `;
 
 export const Text = styled.Text`
-  margin-left: 8px;
+  margin-left: 12px;
   font-size: 16px;
   font-family: MuktaVaani_400Regular;
 `;

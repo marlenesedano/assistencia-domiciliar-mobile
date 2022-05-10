@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons, Fontisto } from "@expo/vector-icons";
 import { ProfessionalSearch } from "../ProfessionalSearch";
-import { Schedule } from "../Schedule";
+import { AttendanceListPatient } from "../AttendanceListPatient";
 import { theme } from "../../styles/theme";
 
 const Tab = createBottomTabNavigator();
@@ -66,7 +66,7 @@ export function PatientTabs() {
       />
       <Tab.Screen
         name="Agendamentos"
-        component={Schedule}
+        component={AttendanceListPatient}
         options={{ tabBarIcon: icons.Schedule }}
       />
     </Tab.Navigator>

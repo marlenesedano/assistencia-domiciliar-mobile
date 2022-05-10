@@ -3,6 +3,7 @@ import {
   Feather,
   FontAwesome,
   MaterialCommunityIcons,
+  Ionicons,
 } from "@expo/vector-icons";
 import { Star } from "../../components/Star";
 import { TextField } from "../../components/TextField";
@@ -10,37 +11,44 @@ import { Line } from "../../components/Line";
 import { Button } from "../../components/Button";
 import * as S from "./styles";
 
-export function SearchProfessionalProfile({ navigation }) {
+export function SearchProfessionalProfile({ route, navigation, stars }) {
+  const professional = route.params;
   return (
     <S.Container>
       <S.Header>
-        <FontAwesome5 name="user-circle" size={50} color="black" />
+        <FontAwesome5 name="user-circle" size={55} color="black" />
         <S.Wrapper>
-          <S.Name>Marlene Sedano</S.Name>
-          <S.Label>Desenvolvedora</S.Label>
+          <S.Name>{professional.name}</S.Name>
+          <S.Label>{professional.specialty}</S.Label>
         </S.Wrapper>
       </S.Header>
-      <Star stars={4} />
+      <Star stars={stars} size={22} />
       <Line />
       <S.Content>
-        <Feather name="phone" size={24} color="black" />
-        <S.Text>9999-9999</S.Text>
+        <Feather name="phone" size={22} color="black" />
+        <S.Text>{professional.phone}</S.Text>
       </S.Content>
       <S.Content>
         <FontAwesome name="whatsapp" size={24} color="black" />
-        <S.Text>9999-9999</S.Text>
+        <S.Text>{professional.phone}</S.Text>
+      </S.Content>
+      <S.Content>
+        <MaterialCommunityIcons name="email-outline" size={24} color="black" />
+        <S.Text>{professional.email}</S.Text>
       </S.Content>
       <S.Content style={{ marginBottom: 16 }}>
-        <MaterialCommunityIcons name="email-outline" size={24} color="black" />
-        <S.Text>marlenesedano@exemplo.com</S.Text>
+        <Ionicons name="home-outline" size={24} color="black" />
+        <S.Text>
+          {professional.city.name} - {professional.state.uf}
+        </S.Text>
       </S.Content>
-      <TextField numberOfLines={10} multiline />
+      <TextField numberOfLines={10} multiline value={professional.description} />
       <Line />
       <Button
         margin="15px 0px 0px 0px"
         onPress={() => navigation.navigate("NewSchedule")}
       >
-        Novo Agendamento
+        Solicitar Agendamento
       </Button>
       <Button margin="10px 0px 0px 0px" type="secondary">
         Voltar

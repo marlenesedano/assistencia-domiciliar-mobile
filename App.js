@@ -27,6 +27,7 @@ import { PatientEvaluation } from "./src/views/PatientEvaluation";
 import { PatientTabs } from "./src/views/PatientTabs";
 import { ProfessionalTabs } from "./src/views/ProfessionalTabs";
 import { ProfileProvider } from "./src/context/ProfileContext";
+import { AttendanceListPatient } from "./src/views/AttendanceListPatient";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -56,6 +57,7 @@ export default function App() {
             <Screen name="ProfessionalSearch" component={ProfessionalSearch} />
             <Screen name="RemoteService" component={RemoteService} />
             <Screen name="PatientEvaluation" component={PatientEvaluation} />
+            <Screen name="AttendanceListPatient" component={AttendanceListPatient} />
             <Screen
               name="RegisterProfessionalNext"
               component={RegisterProfessionalNext}
