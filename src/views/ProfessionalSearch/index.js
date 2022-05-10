@@ -33,6 +33,7 @@ export function ProfessionalSearch({ navigation }) {
           <ProfessionalCard
             professional={professional.name}
             specialty={professional.specialty}
+            navigation={navigation}
           />
         ))}
       </S.ListProfessionals>

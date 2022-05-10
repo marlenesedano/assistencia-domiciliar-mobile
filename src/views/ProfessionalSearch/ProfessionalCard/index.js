@@ -3,9 +3,9 @@ import { Star } from "../../../components/Star";
 
 import * as S from "./styles";
 
-export function ProfessionalCard({ professional, specialty, stars }) {
+export function ProfessionalCard({ professional, specialty, stars, navigation }) {
   return (
-    <S.Container>
+    <S.Container onPress={() => navigation.navigate("SearchProfessionalProfile")}>
       <S.Content>
         <S.Wrapper>
           <FontAwesome5 name="user-circle" size={50} color="black" />
