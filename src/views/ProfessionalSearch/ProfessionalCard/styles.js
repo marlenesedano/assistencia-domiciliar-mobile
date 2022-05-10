@@ -1,18 +1,20 @@
 import styled from "styled-components/native";
 
-export const Container = styled.View`
-  padding: 80px 30px 0px 30px;
-  width: 100%;
-`;
+export const Container = styled.View``;
 
-export const ContentEvaluation = styled.View`
-  border: 1px;
-  border-radius: 10px;
-  padding: 15px;
+export const Wrapper = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-top: 12px;
+  margin-bottom: -9px;
+`;
+
+export const Content = styled.View`
+  border: 1px;
+  /* border-color: #6930c3; */
+  border-radius: 10px;
+  padding: 10px 0px 5px 25px;
+  margin-bottom: 16px;
 `;
 
 export const WrapperEvaluation = styled.View`

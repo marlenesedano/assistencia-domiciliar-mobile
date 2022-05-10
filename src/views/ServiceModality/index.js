@@ -27,7 +27,7 @@ export function ServiceModality({ navigation }) {
       <Button
         type="secondary"
         margin="10px 0px"
-        onPress={() => navigation.navigate("ProfessionalSearch")}
+        onPress={() => navigation.navigate("PatientTabs")}
       >
         Voltar
       </Button>

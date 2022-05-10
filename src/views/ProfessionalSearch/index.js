@@ -28,12 +28,14 @@ export function ProfessionalSearch({ navigation }) {
       >
         Busque por um profissional
       </Button>
-      {professionals.map((professional) => (
-        <ProfessionalCard
-          professional={professional.name}
-          specialty={professional.specialty}
-        />
-      ))}
+      <S.ListProfessionals>
+        {professionals.map((professional) => (
+          <ProfessionalCard
+            professional={professional.name}
+            specialty={professional.specialty}
+          />
+        ))}
+      </S.ListProfessionals>
     </S.Container>
   );
 }

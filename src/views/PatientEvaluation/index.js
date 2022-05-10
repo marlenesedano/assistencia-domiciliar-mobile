@@ -4,7 +4,7 @@ import { Star } from "../../components/Star";
 import { Title } from "../../components/Title";
 import * as S from "./styles";
 
-export function PatientEvaluation() {
+export function PatientEvaluation({ stars }) {
   return (
     <S.Container>
       <Title>Avaliações dos seus pacientes</Title>
@@ -13,7 +13,7 @@ export function PatientEvaluation() {
           <S.Average>4,0</S.Average>
         </S.AverageContainer>
         <S.Content>
-          <Star />
+          <Star stars={stars} size={22} />
           <S.Label>Média entre X opiniões</S.Label>
         </S.Content>
       </S.Whapper>
@@ -23,7 +23,7 @@ export function PatientEvaluation() {
         <S.WhaperEvaluation>
           <S.NamePatient>Luciana Carvalo</S.NamePatient>
           <S.Evaluation>
-            <Star />
+            <Star stars={stars} size={19} />
             <S.DateEvaluation>13/12/2021</S.DateEvaluation>
           </S.Evaluation>
         </S.WhaperEvaluation>
@@ -34,7 +34,7 @@ export function PatientEvaluation() {
         <S.WhaperEvaluation>
           <S.NamePatient>Roberta Testess</S.NamePatient>
           <S.Evaluation>
-            <Star />
+            <Star stars={stars} size={19} />
             <S.DateEvaluation>13/12/2021</S.DateEvaluation>
           </S.Evaluation>
         </S.WhaperEvaluation>
@@ -45,7 +45,7 @@ export function PatientEvaluation() {
         <S.WhaperEvaluation>
           <S.NamePatient>Marcos teste</S.NamePatient>
           <S.Evaluation>
-            <Star />
+            <Star stars={stars} size={19} />
             <S.DateEvaluation>13/12/2021</S.DateEvaluation>
           </S.Evaluation>
         </S.WhaperEvaluation>
