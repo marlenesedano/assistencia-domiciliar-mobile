@@ -14,3 +14,11 @@ export const specialties = [
   { value: "gynecologist", label: "Ginecologista" },
   { value: "therapist", label: "Terapeuta" },
 ];
+
+export const getSpecialtyName = (specialty) => {
+  const values = specialties.find((element) => {
+    return element.value === specialty;
+  });
+
+  return values.label;
+};

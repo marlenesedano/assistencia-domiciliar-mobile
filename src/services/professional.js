@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, getDocs, setDoc, collection } from "firebase/firestore";
 import { auth, db } from "./firebase";
+import { getSpecialtyName } from "./specialty";
 
 export async function getProfessionalByEmail(email) {
   const docRef = doc(db, "professionals", email);
@@ -40,4 +41,21 @@ export async function createProfessional(professional) {
   await setDoc(docRef, professional);
 
   return null;
+}
+
+export async function findProfessionals() {
+  const snapshot = await getDocs(collection(db, "professionals"));
+
+  const professionals = [];
+
+  snapshot.forEach((professional) => {
+    const data = professional.data();
+    professionals.push({
+      id: professional.id,
+      ...data,
+      specialty: getSpecialtyName(data.specialty),
+    });
+  });
+
+  return professionals;
 }

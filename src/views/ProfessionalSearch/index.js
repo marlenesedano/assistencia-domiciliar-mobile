@@ -1,20 +1,39 @@
-import * as S from "./styles";
-
-import { TextField } from "../../components/TextField";
+import { useEffect, useState } from "react";
 import { Button } from "../../components/Button";
 import { Title } from "../../components/Title";
 import { useProfile } from "../../context/ProfileContext";
+import { findProfessionals } from "../../services/professional";
+import { ProfessionalCard } from "./ProfessionalCard";
+
+import * as S from "./styles";
 
 export function ProfessionalSearch({ navigation }) {
+  const [professionals, setProfessionals] = useState([]);
   const { profile } = useProfile();
+
+  useEffect(() => {
+    (async function loadProfessionals() {
+      const data = await findProfessionals();
+      setProfessionals(data);
+    })();
+  }, []);
 
   return (
     <S.Container>
       <Title center={false}>Olá, {profile.data.name}</Title>
-      <TextField placeholder="Busque por um profissional" icon="search" />
-      <Button onPress={() => navigation.navigate("ServiceModality")}>
-        Modalidade
+      <Button
+        icon="search"
+        type="secondary"
+        onPress={() => navigation.navigate("ServiceModality")}
+      >
+        Busque por um profissional
       </Button>
+      {professionals.map((professional) => (
+        <ProfessionalCard
+          professional={professional.name}
+          specialty={professional.specialty}
+        />
+      ))}
     </S.Container>
   );
 }
