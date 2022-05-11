@@ -4,6 +4,7 @@ export const Container = styled.View`
   width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   margin-top: 15px;
   margin-bottom: 10px;
   border: 1px;
@@ -13,9 +14,18 @@ export const Container = styled.View`
   justify-content: center;
 `;
 export const Content = styled.View`
-  margin-left: 28px;
-  margin-right: 28px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
+
+export const WrapperLeft = styled.Text`
+  margin-left: 10px;
+  justify-content: flex-start;
+`;
+
+export const WrapperRight = styled.Text``;
 
 export const PersonName = styled.Text`
   font-family: MuktaVaani_400Regular;

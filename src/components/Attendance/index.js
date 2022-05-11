@@ -14,12 +14,14 @@ export function Attendance({ personName, scheduleDate, status, onPress }) {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <S.Container>
-        <FontAwesome5 name="user-circle" size={50} color="black" />
+        <S.WrapperLeft>
+          <FontAwesome5 name="user-circle" size={50} color="black" />
+        </S.WrapperLeft>
         <S.Content>
           <S.PersonName>{personName}</S.PersonName>
           <S.ScheduleDate>{scheduleDate}</S.ScheduleDate>
         </S.Content>
-        {status && icons[status]}
+        <S.WrapperRight>{status && icons[status]}</S.WrapperRight>
       </S.Container>
     </TouchableWithoutFeedback>
   );

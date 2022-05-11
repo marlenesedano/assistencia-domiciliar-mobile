@@ -27,7 +27,10 @@ export function Schedule({ navigation }) {
         <S.LabelAdress>Cep: 99999-999</S.LabelAdress>
         <S.LabelAdress>Complemento: Bloco K, apto 104</S.LabelAdress>
       </S.Whapper>
+      <S.Status>Status:</S.Status>
+      <S.Label> Aguardando aprovação do médico</S.Label>
       <Line />
+
       <Button
         margin="10px 0px 0px 0px"
         onPress={() => navigation.navigate("PatientEvaluation")}

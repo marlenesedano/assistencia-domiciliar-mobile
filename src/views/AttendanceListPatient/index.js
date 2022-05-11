@@ -5,9 +5,9 @@ import * as S from "./styles";
 export function AttendanceListPatient({ navigation }) {
   return (
     <S.Container>
-      <Title>Lista de atendimentos</Title>
+      <Title>Solicitação de Atendimento</Title>
       <Attendance
-        personName="Marlene Atendimento"
+        personName=" Dra: Marlene "
         scheduleDate="21/08 13:00"
         status="pending"
         onPress={() => navigation.navigate("Schedule")}
