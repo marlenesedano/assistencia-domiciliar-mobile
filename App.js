@@ -16,9 +16,6 @@ import { RegisterPatient } from "./src/views/RegisterPatient";
 import { RegisterProfessional } from "./src/views/RegisterProfessional";
 import { ProfessionalSearch } from "./src/views/ProfessionalSearch";
 import { RegisterProfessionalNext } from "./src/views/RegisterProfessionalNext";
-import { ServiceModality } from "./src/views/ServiceModality";
-import { RemoteService } from "./src/views/RemoteService";
-import { PresencialService } from "./src/views/PresencialService";
 import { NewSchedule } from "./src/views/NewSchedule";
 import { SearchProfessionalProfile } from "./src/views/SearchProfessionalProfile";
 import { AttendanceList } from "./src/views/AttendanceList";
@@ -53,16 +50,13 @@ export default function App() {
             <Screen name="Register" component={Register} />
             <Screen name="RegisterPatient" component={RegisterPatient} />
             <Screen name="RegisterProfessional" component={RegisterProfessional} />
-            <Screen name="PresencialService" component={PresencialService} />
             <Screen name="ProfessionalSearch" component={ProfessionalSearch} />
-            <Screen name="RemoteService" component={RemoteService} />
             <Screen name="PatientEvaluation" component={PatientEvaluation} />
             <Screen name="AttendanceListPatient" component={AttendanceListPatient} />
             <Screen
               name="RegisterProfessionalNext"
               component={RegisterProfessionalNext}
             />
-            <Screen name="ServiceModality" component={ServiceModality} />
             <Screen name="NewSchedule" component={NewSchedule} />
             <Screen name="AttendanceList" component={AttendanceList} />
             <Screen name="Schedule" component={Schedule} />

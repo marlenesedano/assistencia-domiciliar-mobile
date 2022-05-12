@@ -54,10 +54,18 @@ export async function createProfessional(professional) {
 export async function findProfessionals(filter) {
   let queryProfessional;
 
-  if (filter) {
+  if (filter.type === "remote") {
     queryProfessional = query(
       collection(db, "professionals"),
       where("specialty", "==", filter.specialty),
+      where("acceptRemote", "==", true),
+    );
+  } else if (filter.type === "presencial") {
+    queryProfessional = query(
+      collection(db, "professionals"),
+      where("specialty", "==", filter.specialty),
+      where("state.uf", "==", filter.state.uf),
+      where("city.id", "==", filter.city.id),
     );
   } else {
     queryProfessional = query(collection(db, "professionals"));

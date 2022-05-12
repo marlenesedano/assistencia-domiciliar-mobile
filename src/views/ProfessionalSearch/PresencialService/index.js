@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { PickerSelect } from "../../components/PickerSelect";
-import { Title } from "../../components/Title";
-import { Line } from "../../components/Line";
-import { Button } from "../../components/Button";
-import { getCities, getUfs } from "../../services/locality";
-import { specialties } from "../../services/specialty";
+import { PickerSelect } from "../../../components/PickerSelect";
+import { Title } from "../../../components/Title";
+import { Line } from "../../../components/Line";
+import { Button } from "../../../components/Button";
+import { getCities, getUfs } from "../../../services/locality";
+import { specialties } from "../../../services/specialty";
 import { schema } from "./schema";
 
 import * as S from "./styles";
 
-export function PresencialService({ navigation }) {
+export function PresencialService({ setSearchFilters, setCurrentScreen }) {
   const [states, setStates] = useState("");
   const [selectedState, setSelectedState] = useState({ state: {} });
   const [selectedCity, setSelectedCity] = useState({ city: {} });
@@ -28,10 +28,8 @@ export function PresencialService({ navigation }) {
     const validationErrors = schema.validate(currentForm);
 
     if (Object.keys(validationErrors).length === 0) {
-      navigation.navigate("PatientTabs", {
-        screen: "ProfessionalSearch",
-        params: currentForm,
-      });
+      setSearchFilters(currentForm);
+      setCurrentScreen("ProfessionalSearch");
     } else {
       setErrors(validationErrors);
     }
@@ -86,8 +84,12 @@ export function PresencialService({ navigation }) {
       <Button margin="20px 0px" onPress={handleSubmit}>
         Buscar
       </Button>
-      <Button margin="10px 0px" type="secondary">
-        Cancelar
+      <Button
+        margin="10px 0px"
+        type="secondary"
+        onPress={() => setCurrentScreen("ServiceModality")}
+      >
+        Voltar
       </Button>
     </S.Container>
   );
