@@ -1,5 +1,5 @@
 export const specialties = [
-  { value: "", label: "Escolha uma especialidade:" },
+  { value: undefined, label: "Escolha uma especialidade:" },
   { value: "psychologist", label: "Psicólogo" },
   { value: "nutritionist", label: "Nutricionista" },
   { value: "psychiatrist", label: "Psiquiatra" },

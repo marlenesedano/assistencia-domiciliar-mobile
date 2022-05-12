@@ -1,6 +1,4 @@
-/* eslint-disable import/newline-after-import */
 import React, { useState, useEffect } from "react";
-import { Alert } from "react-native";
 import { PickerSelect } from "../../components/PickerSelect";
 import { Title } from "../../components/Title";
 import { Line } from "../../components/Line";
@@ -17,27 +15,23 @@ export function PresencialService({ navigation }) {
   const [selectedCity, setSelectedCity] = useState({ city: {} });
   const [cities, setCities] = useState("");
   const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [selectedSpecialty, setSelectedSpecialty] = useState();
 
   const handleSubmit = async () => {
     const currentForm = {
+      type: "presencial",
       state: selectedState,
       city: selectedCity,
+      specialty: selectedSpecialty,
     };
 
     const validationErrors = schema.validate(currentForm);
 
     if (Object.keys(validationErrors).length === 0) {
-      setLoading(true);
-
-      const response = "";
-
-      if (response != null) {
-        Alert.alert("Ops", response);
-      } else {
-        // navigation.navigate("Login", currentForm);
-        setLoading(false);
-      }
+      navigation.navigate("PatientTabs", {
+        screen: "ProfessionalSearch",
+        params: currentForm,
+      });
     } else {
       setErrors(validationErrors);
     }
@@ -71,7 +65,11 @@ export function PresencialService({ navigation }) {
     <S.Container>
       <Title>Buscar atendimento presencial</Title>
       <S.Label>Escolha uma especialidade</S.Label>
-      <PickerSelect items={specialties} error={errors.specialty} />
+      <PickerSelect
+        items={specialties}
+        error={errors.specialty}
+        onValueChange={(value) => setSelectedSpecialty(value)}
+      />
       <S.Label>Estado</S.Label>
       <PickerSelect
         items={[{ value: {}, label: "Escolha seu estado" }, ...states]}
@@ -85,10 +83,10 @@ export function PresencialService({ navigation }) {
         error={errors["city.id"]}
       />
       <Line />
-      <Button margin="20px 0px" onPress={handleSubmit} isLoading={loading}>
+      <Button margin="20px 0px" onPress={handleSubmit}>
         Buscar
       </Button>
-      <Button margin="10px 0px" type="secundary">
+      <Button margin="10px 0px" type="secondary">
         Cancelar
       </Button>
     </S.Container>

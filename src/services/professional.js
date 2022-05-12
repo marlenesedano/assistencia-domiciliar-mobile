@@ -1,5 +1,13 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, getDoc, getDocs, setDoc, collection } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+  collection,
+  where,
+  query,
+} from "firebase/firestore";
 import { auth, db } from "./firebase";
 import { getSpecialtyName } from "./specialty";
 
@@ -43,16 +51,27 @@ export async function createProfessional(professional) {
   return null;
 }
 
-export async function findProfessionals() {
-  const snapshot = await getDocs(collection(db, "professionals"));
+export async function findProfessionals(filter) {
+  let queryProfessional;
+
+  if (filter) {
+    queryProfessional = query(
+      collection(db, "professionals"),
+      where("specialty", "==", filter.specialty),
+    );
+  } else {
+    queryProfessional = query(collection(db, "professionals"));
+  }
 
   const professionals = [];
 
-  snapshot.forEach((professional) => {
+  const querySnapshot = await getDocs(queryProfessional);
+
+  querySnapshot.forEach((professional) => {
     const data = professional.data();
     professionals.push({
-      id: professional.id,
       ...data,
+      id: doc.id,
       specialty: getSpecialtyName(data.specialty),
     });
   });
