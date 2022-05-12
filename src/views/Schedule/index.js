@@ -23,9 +23,9 @@ export function Schedule({ navigation }) {
       </S.Whapper>
       <S.Label>Endereço</S.Label>
       <S.Whapper>
-        <S.LabelAdress>Rua jose, 270 Dourados-MS</S.LabelAdress>
-        <S.LabelAdress>Cep: 99999-999</S.LabelAdress>
-        <S.LabelAdress>Complemento: Bloco K, apto 104</S.LabelAdress>
+        <S.LabelAddress>Rua jose, 270 Dourados-MS</S.LabelAddress>
+        <S.LabelAddress>Cep: 99999-999</S.LabelAddress>
+        <S.LabelAddress>Complemento: Bloco K, apto 104</S.LabelAddress>
       </S.Whapper>
       <S.Status>Status:</S.Status>
       <S.Label> Aguardando aprovação do médico</S.Label>

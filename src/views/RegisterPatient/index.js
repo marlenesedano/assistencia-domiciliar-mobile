@@ -12,6 +12,7 @@ export function RegisterPatient({ navigation }) {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+
   const handleSubmit = async () => {
     const validationErrors = schema.validate(form);
 

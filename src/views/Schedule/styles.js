@@ -53,7 +53,7 @@ export const Label = styled.Text`
   color: #494949;
 `;
 
-export const LabelAdress = styled.Text`
+export const LabelAddress = styled.Text`
   font-family: MuktaVaani_400Regular;
   font-size: 18px;
   color: #696969;
