@@ -11,7 +11,10 @@ export async function getSchedule(id) {
 }
 
 export async function createSchedule(schedule) {
-  await addDoc(schedulesCollection, schedule);
+  await addDoc(schedulesCollection, {
+    ...schedule,
+    createdAt: new Date(),
+  });
 }
 
 export async function findSchedules() {

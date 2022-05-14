@@ -19,12 +19,15 @@ export function NewSchedule({ navigation }) {
   const [cities, setCities] = useState("");
   const [errors, setErrors] = useState({});
   const [scheduleDate, setDataSchedule] = useState("");
-  const [hour, setHour] = useState();
+  const [scheduleHour, setScheduleHour] = useState();
   const [cep, setCep] = useState();
   const [street, setStreet] = useState("");
   const [number, setNumber] = useState("");
   const [complement, setComplement] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const showScheduleError =
+    !errors["schedule.date"] && !errors["schedule.hour"] && errors.schedule;
 
   const handleSubmit = async () => {
     try {
@@ -32,14 +35,17 @@ export function NewSchedule({ navigation }) {
         state: selectedState,
         city: selectedCity,
         scheduleDate,
-        hour,
+        scheduleHour,
         cep,
         street,
         number,
         complement,
       };
 
-      const validationErrors = schema.validate(currentForm);
+      const validationErrors = schema.validate({
+        ...currentForm,
+        schedule: { date: scheduleDate, hour: scheduleHour },
+      });
 
       if (Object.keys(validationErrors).length === 0) {
         setLoading(true);
@@ -48,8 +54,10 @@ export function NewSchedule({ navigation }) {
 
         if (response != null) {
           Alert.alert("Ops", response);
+          setLoading(false);
         } else {
-          navigation.navigate("AttendanceListPatient");
+          setLoading(false);
+          navigation.navigate("PatientTabs");
         }
       } else {
         setErrors(validationErrors);
@@ -95,7 +103,7 @@ export function NewSchedule({ navigation }) {
             mask="99/99/9999"
             placeholder="DD/MM/AAAA"
             label="Data"
-            error={errors.scheduleDate}
+            error={errors["schedule.date"] || (showScheduleError ? " " : "")}
             onChangeText={(newValue) => setDataSchedule(newValue)}
           />
           <S.Space />
@@ -103,22 +111,26 @@ export function NewSchedule({ navigation }) {
             label="Hora"
             mask="99:99"
             placeholder="HH:MM"
-            onChangeText={(value) => setHour(value)}
+            error={errors["schedule.hour"] || (showScheduleError ? " " : "")}
+            onChangeText={(value) => setScheduleHour(value)}
           />
         </S.Wrapper>
+        {showScheduleError && <S.ErrorLabel>{errors.schedule}</S.ErrorLabel>}
         <TextField
-          label="Cep"
+          label="CEP"
           mask="99999-999"
           placeholder="Cep"
           error={errors.cep}
           onChangeText={(value) => setCep(value)}
         />
         <PickerSelect
+          label="Estado"
           items={[{ value: {}, label: "Escolha seu estado" }, ...states]}
           onValueChange={(value) => setSelectedState(value)}
           error={errors["state.uf"]}
         />
         <PickerSelect
+          label="Cidade"
           items={[{ value: {}, label: "Escolha sua cidade" }, ...cities]}
           onValueChange={(value) => setSelectedCity(value)}
           error={errors["city.id"]}
@@ -126,21 +138,22 @@ export function NewSchedule({ navigation }) {
         <TextField
           label="Rua"
           placeholder="Informe a Rua"
+          error={errors.street}
           onChangeText={(value) => setStreet(value)}
         />
         <TextField
           label="Numero"
           placeholder="Informe o Número"
-          onValueChange={(value) => setNumber(value)}
+          error={errors.number}
+          onChangeText={(value) => setNumber(value)}
         />
         <TextField
           label="Complemento"
           placeholder="Informe o Complemento"
-          onValueChange={(value) => setComplement(value)}
+          onChangeText={(value) => setComplement(value)}
         />
         <Line />
         <Button margin="10px 0px 20px 0" onPress={handleSubmit} isLoading={loading}>
-          {" "}
           Novo Agendamento
         </Button>
         <Button type="secondary">Cancelar</Button>

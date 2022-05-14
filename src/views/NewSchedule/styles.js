@@ -14,3 +14,10 @@ export const Wrapper = styled.View`
 export const Space = styled.View`
   margin-left: 10px;
 `;
+
+export const ErrorLabel = styled.Text`
+  margin-bottom: 8px;
+  font-family: MuktaVaani_400Regular;
+  font-size: 16px;
+  color: #ff7788;
+`;

@@ -36,7 +36,7 @@ export function TextField({
           />
         )}
       </S.InputContainer>
-      {!!error && <S.Label error={error}>{error}</S.Label>}
+      {!!error && error.trim() !== "" && <S.Label error={error}>{error}</S.Label>}
     </S.Container>
   );
 }
