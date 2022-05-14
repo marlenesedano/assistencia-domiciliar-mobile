@@ -13,6 +13,7 @@ import * as S from "./styles";
 
 export function SearchProfessionalProfile({ route, navigation, stars }) {
   const professional = route.params;
+
   return (
     <S.Container>
       <S.Header>
@@ -46,7 +47,7 @@ export function SearchProfessionalProfile({ route, navigation, stars }) {
       <Line />
       <Button
         margin="15px 0px 0px 0px"
-        onPress={() => navigation.navigate("NewSchedule")}
+        onPress={() => navigation.navigate("NewSchedule", professional)}
       >
         Solicitar Agendamento
       </Button>

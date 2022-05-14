@@ -13,6 +13,7 @@ export async function getSchedule(id) {
 export async function createSchedule(schedule) {
   await addDoc(schedulesCollection, {
     ...schedule,
+    status: "pending",
     createdAt: new Date(),
   });
 }

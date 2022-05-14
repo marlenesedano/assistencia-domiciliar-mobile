@@ -8,11 +8,14 @@ import { Title } from "../../components/Title";
 import { PickerSelect } from "../../components/PickerSelect";
 import { getCities, getUfs } from "../../services/locality";
 import { createSchedule } from "../../services/schedule";
+import { useProfile } from "../../context/ProfileContext";
 import { schema } from "./schema";
 
 import * as S from "./styles";
 
-export function NewSchedule({ navigation }) {
+export function NewSchedule({ navigation, route }) {
+  const professional = route.params;
+  const { profile } = useProfile();
   const [states, setStates] = useState("");
   const [selectedState, setSelectedState] = useState({ state: {} });
   const [selectedCity, setSelectedCity] = useState({ city: {} });
@@ -40,6 +43,8 @@ export function NewSchedule({ navigation }) {
         street,
         number,
         complement,
+        professional,
+        patient: { ...profile.data, id: profile.data.email },
       };
 
       const validationErrors = schema.validate({
@@ -63,6 +68,7 @@ export function NewSchedule({ navigation }) {
         setErrors(validationErrors);
       }
     } catch (error) {
+      setLoading(false);
       Alert.alert(error.message);
     }
   };
@@ -119,7 +125,7 @@ export function NewSchedule({ navigation }) {
         <TextField
           label="CEP"
           mask="99999-999"
-          placeholder="Cep"
+          placeholder="CEP"
           error={errors.cep}
           onChangeText={(value) => setCep(value)}
         />

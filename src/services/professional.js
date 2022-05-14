@@ -79,7 +79,7 @@ export async function findProfessionals(filter) {
     const data = professional.data();
     professionals.push({
       ...data,
-      id: doc.id,
+      id: professional.id,
       specialty: getSpecialtyName(data.specialty),
     });
   });
