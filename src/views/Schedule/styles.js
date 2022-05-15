@@ -61,6 +61,6 @@ export const LabelAddress = styled.Text`
 
 export const Status = styled.Text`
   font-family: MuktaVaani_400Regular;
-  font-size: 24px;
+  font-size: 22px;
   color: #6930c3;
 `;

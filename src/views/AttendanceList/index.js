@@ -22,19 +22,21 @@ export function AttendanceList({ navigation }) {
   return (
     <S.Container>
       <Title>{profile.type === "patient" ? "Agendamentos" : "Atendimentos"}</Title>
-      {schedules.map(
-        ({ id, status, professional, patient, scheduleDate, scheduleHour }) => (
+      {schedules.map((schedule) => {
+        const { professional, patient } = schedule;
+
+        return (
           <Attendance
-            key={id}
+            key={schedule.id}
             personName={
               profile.type === "patient" ? professional.name : patient.name
             }
-            scheduleDate={`${scheduleDate} ${scheduleHour}`}
-            status={status}
-            onPress={() => navigation.navigate("Schedule")}
+            scheduleDate={`${schedule.scheduleDate} ${schedule.scheduleHour}`}
+            status={schedule.status}
+            onPress={() => navigation.navigate("Schedule", schedule)}
           />
-        ),
-      )}
+        );
+      })}
     </S.Container>
   );
 }
