@@ -1,3 +1,4 @@
+import { useIsFocused } from "@react-navigation/native";
 import { useState, useEffect } from "react";
 import { Attendance } from "../../components/Attendance";
 import { Title } from "../../components/Title";
@@ -9,6 +10,7 @@ import * as S from "./styles";
 export function AttendanceList({ navigation }) {
   const { profile } = useProfile();
   const [schedules, setSchedules] = useState([]);
+  const isFocused = useIsFocused();
 
   async function loadSchedules() {
     const response = await findSchedules();
@@ -17,7 +19,7 @@ export function AttendanceList({ navigation }) {
 
   useEffect(() => {
     loadSchedules();
-  }, []);
+  }, [isFocused]);
 
   return (
     <S.Container>

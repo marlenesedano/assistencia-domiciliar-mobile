@@ -1,17 +1,9 @@
 import { z } from "zod";
+import { toDate } from "../../utils/date_utils";
 import { createSchema } from "../../utils/validators";
 
 export function validadeDate(schedule) {
-  const dateValues = schedule.date.split("/");
-  const hourValues = schedule.hour.split(":");
-
-  const date = new Date(
-    Number(dateValues[2]),
-    Number(dateValues[1]) - 1,
-    Number(dateValues[0]),
-    Number(hourValues[0]),
-    Number(hourValues[1]),
-  );
+  const date = toDate(schedule.date, schedule.hour);
 
   return date.getTime() >= new Date().getTime();
 }

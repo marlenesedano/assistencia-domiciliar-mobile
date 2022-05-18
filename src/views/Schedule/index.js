@@ -1,8 +1,10 @@
 import { FontAwesome5, Feather } from "@expo/vector-icons";
+import { Alert } from "react-native";
 import { Button } from "../../components/Button";
 import { Line } from "../../components/Line";
 import { Title } from "../../components/Title";
 import { useProfile } from "../../context/ProfileContext";
+import { updateStatus } from "../../services/schedule";
 
 import * as S from "./styles";
 
@@ -11,6 +13,8 @@ export function Schedule({ navigation, route }) {
 
   const schedule = route.params;
   const { professional, patient } = schedule;
+  const showButtons =
+    profile.type === "professional" && schedule.status === "pending";
 
   const statusMessages = {
     pending:
@@ -19,13 +23,31 @@ export function Schedule({ navigation, route }) {
         : "Aguardando aprovação do médico",
     cancel:
       profile.type === "professional"
-        ? "Cancelado por você"
+        ? "Recusado por você"
         : "Agendamento cancelado pelo médico",
     accepted:
       profile.type === "professional"
         ? "Você aceitou o agendamento"
         : "Agendamento aceito pelo médico",
     checked: "Atendimento concluído",
+  };
+
+  const acceptSchedule = async () => {
+    try {
+      await updateStatus(schedule.id, "accepted");
+      navigation.navigate("ProfessionalTabs");
+    } catch (error) {
+      Alert.alert("Ops", error.message);
+    }
+  };
+
+  const canceledSchedule = async () => {
+    try {
+      await updateStatus(schedule.id, "cancel");
+      navigation.navigate("ProfessionalTabs");
+    } catch (error) {
+      Alert.alert("Ops", error.message);
+    }
   };
 
   return (
@@ -63,16 +85,17 @@ export function Schedule({ navigation, route }) {
       </S.Whapper>
       <S.Status>Status:</S.Status>
       <S.Label>{statusMessages[schedule.status]}</S.Label>
-      {profile.type === "professional" && (
+      {showButtons && (
         <>
           <Line />
-          <Button
-            margin="10px 0px 0px 0px"
-            onPress={() => navigation.navigate("PatientEvaluation")}
-          >
+          <Button margin="10px 0px 0px 0px" onPress={acceptSchedule}>
             Aceitar
           </Button>
-          <Button margin="20px 0px 0px 0px" type="secondary">
+          <Button
+            margin="20px 0px 0px 0px"
+            type="secondary"
+            onPress={canceledSchedule}
+          >
             Recusar
           </Button>
         </>

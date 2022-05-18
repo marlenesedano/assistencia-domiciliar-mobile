@@ -1,14 +1,8 @@
-import { doc, getDoc, getDocs, addDoc, collection } from "firebase/firestore";
+import { doc, getDocs, addDoc, collection, setDoc } from "firebase/firestore";
+import { toDate } from "../utils/date_utils";
 import { db } from "./firebase";
 
 const schedulesCollection = collection(db, "schedules");
-
-export async function getSchedule(id) {
-  const docRef = doc(db, "schedules", id);
-  const docSnap = await getDoc(docRef);
-
-  return docSnap.data();
-}
 
 export async function createSchedule(schedule) {
   await addDoc(schedulesCollection, {
@@ -26,8 +20,16 @@ export async function findSchedules() {
   snapshot.forEach((schedule) => {
     const data = schedule.data();
 
-    schedules.push({ id: schedule.id, ...data });
+    const date = toDate(data.scheduleDate, data.scheduleHour);
+    const status = date.getTime() < new Date().getTime() ? "checked" : data.status;
+
+    schedules.push({ id: schedule.id, ...data, status });
   });
 
   return schedules;
+}
+
+export async function updateStatus(id, status) {
+  const scheduleRef = doc(db, "schedules", id);
+  setDoc(scheduleRef, { status }, { merge: true });
 }
