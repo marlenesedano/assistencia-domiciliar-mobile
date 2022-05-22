@@ -14,7 +14,7 @@ export function AttendanceList({ navigation }) {
   const isFocused = useIsFocused();
 
   async function loadSchedules() {
-    const response = await findSchedules();
+    const response = await findSchedules(profile);
     setSchedules(response);
   }
 
@@ -25,22 +25,31 @@ export function AttendanceList({ navigation }) {
   return (
     <ScrollBox>
       <S.Container>
-        <Title>{profile.type === "patient" ? "Agendamentos" : "Atendimentos"}</Title>
-        {schedules.map((schedule) => {
-          const { professional, patient } = schedule;
+        {schedules.length > 0 && (
+          <>
+            <Title>
+              {profile.type === "patient" ? "Agendamentos" : "Atendimentos"}
+            </Title>
+            {schedules.map((schedule) => {
+              const { professional, patient } = schedule;
 
-          return (
-            <Attendance
-              key={schedule.id}
-              personName={
-                profile.type === "patient" ? professional.name : patient.name
-              }
-              scheduleDate={`${schedule.scheduleDate} ${schedule.scheduleHour}`}
-              status={schedule.status}
-              onPress={() => navigation.navigate("Schedule", schedule)}
-            />
-          );
-        })}
+              return (
+                <Attendance
+                  key={schedule.id}
+                  personName={
+                    profile.type === "patient" ? professional.name : patient.name
+                  }
+                  scheduleDate={`${schedule.scheduleDate} ${schedule.scheduleHour}`}
+                  status={schedule.status}
+                  onPress={() => navigation.navigate("Schedule", schedule)}
+                />
+              );
+            })}
+          </>
+        )}
+        {schedules.length === 0 && (
+          <S.Message>Ops, você não tem nenhum agendamento.</S.Message>
+        )}
       </S.Container>
     </ScrollBox>
   );

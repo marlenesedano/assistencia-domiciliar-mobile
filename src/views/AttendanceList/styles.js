@@ -12,3 +12,8 @@ export const Title = styled.View`
   align-items: center;
   width: 100%;
 `;
+
+export const Message = styled.Text`
+  font-size: 24px;
+  font-family: IBMPlexSans_400Regular;
+`;

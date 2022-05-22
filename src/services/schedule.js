@@ -1,4 +1,12 @@
-import { doc, getDocs, addDoc, collection, setDoc } from "firebase/firestore";
+import {
+  doc,
+  getDocs,
+  addDoc,
+  collection,
+  setDoc,
+  where,
+  query,
+} from "firebase/firestore";
 import { toDate } from "../utils/date_utils";
 import { db } from "./firebase";
 
@@ -12,8 +20,13 @@ export async function createSchedule(schedule) {
   });
 }
 
-export async function findSchedules() {
-  const snapshot = await getDocs(schedulesCollection);
+export async function findSchedules(profile) {
+  const querySchedule = query(
+    collection(db, "schedules"),
+    where(`${profile.type}.email`, "==", profile.data.email),
+  );
+
+  const snapshot = await getDocs(querySchedule);
 
   const schedules = [];
 
