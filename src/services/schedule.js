@@ -46,3 +46,8 @@ export async function updateStatus(id, status) {
   const scheduleRef = doc(db, "schedules", id);
   setDoc(scheduleRef, { status }, { merge: true });
 }
+
+export async function updateStars(id, stars) {
+  const scheduleRef = doc(db, "schedules", id);
+  setDoc(scheduleRef, { stars }, { merge: true });
+}

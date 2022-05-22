@@ -4,7 +4,8 @@ import { Button } from "../../components/Button";
 import { Line } from "../../components/Line";
 import { Title } from "../../components/Title";
 import { useProfile } from "../../context/ProfileContext";
-import { updateStatus } from "../../services/schedule";
+import { updateStars, updateStatus } from "../../services/schedule";
+import { Star } from "../../components/Star";
 
 import * as S from "./styles";
 
@@ -50,6 +51,14 @@ export function Schedule({ navigation, route }) {
     }
   };
 
+  const handleStarsChange = async (stars) => {
+    try {
+      await updateStars(schedule.id, stars);
+    } catch (error) {
+      Alert.alert("Ops", error.message);
+    }
+  };
+
   return (
     <S.Container>
       <Title>Agendamento</Title>
@@ -85,6 +94,22 @@ export function Schedule({ navigation, route }) {
       </S.Whapper>
       <S.Status>Status:</S.Status>
       <S.Label>{statusMessages[schedule.status]}</S.Label>
+      {schedule.stars > 0 && profile.type === "professional" && (
+        <>
+          <Line />
+          <S.EvaluationMessage>Avaliação do paciente</S.EvaluationMessage>
+          <Star size={24} stars={schedule.stars} />
+        </>
+      )}
+      {schedule.status === "checked" && profile.type === "patient" && (
+        <>
+          <Line />
+          <S.EvaluationContainer>
+            <S.EvaluationMessage>Informe a nota de atendimento</S.EvaluationMessage>
+            <Star size={28} onStarChanged={handleStarsChange} />
+          </S.EvaluationContainer>
+        </>
+      )}
       {showButtons && (
         <>
           <Line />

@@ -64,3 +64,17 @@ export const Status = styled.Text`
   font-size: 22px;
   color: #6930c3;
 `;
+
+export const EvaluationContainer = styled.View`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+export const EvaluationMessage = styled.Text`
+  font-family: MuktaVaani_400Regular;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 10px 0px 0px 0px;
+  color: #22333b;
+`;
