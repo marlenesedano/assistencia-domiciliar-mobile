@@ -5,7 +5,7 @@ export const Container = styled.View`
   width: 100%;
 `;
 
-export const Whapper = styled.View`
+export const Wrapper = styled.View`
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
@@ -42,7 +42,7 @@ export const ContentEvaluation = styled.View`
   align-items: center;
   margin-top: 12px;
 `;
-export const WhaperEvaluation = styled.View`
+export const WrapperEvaluation = styled.View`
   margin-left: 20px;
   display: flex;
   flex-direction: column;

@@ -106,7 +106,11 @@ export function Schedule({ navigation, route }) {
           <Line />
           <S.EvaluationContainer>
             <S.EvaluationMessage>Informe a nota de atendimento</S.EvaluationMessage>
-            <Star size={28} onStarChanged={handleStarsChange} />
+            <Star
+              size={28}
+              stars={schedule.stars}
+              onStarChanged={handleStarsChange}
+            />
           </S.EvaluationContainer>
         </>
       )}

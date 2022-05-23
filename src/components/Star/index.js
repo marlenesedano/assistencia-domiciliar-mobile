@@ -1,5 +1,5 @@
 import { AntDesign } from "@expo/vector-icons";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as S from "./styles";
 
 export function Star({ stars, size, onStarChanged }) {
@@ -11,6 +11,10 @@ export function Star({ stars, size, onStarChanged }) {
       onStarChanged(position);
     }
   };
+
+  useEffect(() => {
+    setStarCount(stars);
+  }, [stars]);
 
   return (
     <S.Container>
