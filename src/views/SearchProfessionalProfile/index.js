@@ -1,3 +1,4 @@
+import { TouchableWithoutFeedback, Linking, Alert } from "react-native";
 import {
   FontAwesome5,
   Feather,
@@ -14,6 +15,14 @@ import * as S from "./styles";
 export function SearchProfessionalProfile({ route, navigation, stars }) {
   const professional = route.params;
 
+  const handlePhoneClick = () => {
+    const link = `tel:${professional.phone}`;
+
+    Linking.canOpenURL(link)
+      .then(() => Linking.openURL(link))
+      .catch((err) => Alert.alert("Ops", err.message));
+  };
+
   return (
     <S.Container>
       <S.Header>
@@ -25,10 +34,12 @@ export function SearchProfessionalProfile({ route, navigation, stars }) {
       </S.Header>
       <Star stars={stars} size={22} />
       <Line />
-      <S.Content>
-        <Feather name="phone" size={22} color="black" />
-        <S.Text>{professional.phone}</S.Text>
-      </S.Content>
+      <TouchableWithoutFeedback onPress={handlePhoneClick}>
+        <S.Content>
+          <Feather name="phone" size={22} color="black" />
+          <S.Text>{professional.phone}</S.Text>
+        </S.Content>
+      </TouchableWithoutFeedback>
       <S.Content>
         <FontAwesome name="whatsapp" size={24} color="black" />
         <S.Text>{professional.phone}</S.Text>
