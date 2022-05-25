@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
+import { Ionicons, FontAwesome5, AntDesign } from "@expo/vector-icons";
 import { AttendanceList } from "../AttendanceList";
 import { PatientEvaluation } from "../PatientEvaluation";
 import { theme } from "../../styles/theme";
@@ -25,6 +25,20 @@ const icons = {
     return (
       <FontAwesome5
         name="grin-stars"
+        size={size - 1}
+        color={theme.colors[focused ? "primary" : "dark"]}
+        style={{
+          marginLeft: 16,
+          marginTop: 1,
+          textShadowRadius: focused ? 2 : 0,
+        }}
+      />
+    );
+  },
+  Profile({ size, focused }) {
+    return (
+      <AntDesign
+        name="user"
         size={size - 1}
         color={theme.colors[focused ? "primary" : "dark"]}
         style={{
@@ -73,6 +87,11 @@ export function ProfessionalTabs() {
         name="Avaliações"
         component={PatientEvaluation}
         options={{ tabBarIcon: icons.Evaluation }}
+      />
+      <Tab.Screen
+        name="Perfil"
+        component={PatientEvaluation}
+        options={{ tabBarIcon: icons.Profile }}
       />
     </Tab.Navigator>
   );

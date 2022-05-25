@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons, Fontisto } from "@expo/vector-icons";
+import { Ionicons, Fontisto, AntDesign } from "@expo/vector-icons";
 import { ProfessionalSearch } from "../ProfessionalSearch";
 import { AttendanceList } from "../AttendanceList";
 import { theme } from "../../styles/theme";
@@ -20,6 +20,20 @@ const icons = {
     return (
       <Ionicons
         name="ios-calendar"
+        size={size - 1}
+        color={theme.colors[focused ? "primary" : "dark"]}
+        style={{
+          marginLeft: 16,
+          marginTop: 1,
+          textShadowRadius: focused ? 2 : 0,
+        }}
+      />
+    );
+  },
+  Profile({ size, focused }) {
+    return (
+      <AntDesign
+        name="user"
         size={size - 1}
         color={theme.colors[focused ? "primary" : "dark"]}
         style={{
@@ -68,6 +82,11 @@ export function PatientTabs() {
         name="Agendamentos"
         component={AttendanceList}
         options={{ tabBarIcon: icons.Schedule }}
+      />
+      <Tab.Screen
+        name="Perfil"
+        component={AttendanceList}
+        options={{ tabBarIcon: icons.Profile }}
       />
     </Tab.Navigator>
   );
