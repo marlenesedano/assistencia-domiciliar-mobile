@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons, Fontisto, AntDesign } from "@expo/vector-icons";
 import { ProfessionalSearch } from "../ProfessionalSearch";
+import { PatientProfile } from "../PatientProfile";
 import { AttendanceList } from "../AttendanceList";
 import { theme } from "../../styles/theme";
 
@@ -85,7 +86,7 @@ export function PatientTabs() {
       />
       <Tab.Screen
         name="Perfil"
-        component={AttendanceList}
+        component={PatientProfile}
         options={{ tabBarIcon: icons.Profile }}
       />
     </Tab.Navigator>

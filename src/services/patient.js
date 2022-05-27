@@ -37,3 +37,8 @@ export async function createPatient(patient) {
 
   return null;
 }
+
+export async function updateProfile(patient) {
+  const patientRef = doc(db, "patients", patient.email);
+  setDoc(patientRef, patient, { merge: true });
+}

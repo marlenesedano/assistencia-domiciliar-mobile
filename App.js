@@ -24,6 +24,7 @@ import { PatientEvaluation } from "./src/views/PatientEvaluation";
 import { PatientTabs } from "./src/views/PatientTabs";
 import { ProfessionalTabs } from "./src/views/ProfessionalTabs";
 import { ProfileProvider } from "./src/context/ProfileContext";
+import { PatientProfile } from "./src/views/PatientProfile";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -60,6 +61,7 @@ export default function App() {
             <Screen name="Schedule" component={Schedule} />
             <Screen name="PatientTabs" component={PatientTabs} />
             <Screen name="ProfessionalTabs" component={ProfessionalTabs} />
+            <Screen name="PatientProfile" component={PatientProfile} />
             <Screen
               name="SearchProfessionalProfile"
               component={SearchProfessionalProfile}

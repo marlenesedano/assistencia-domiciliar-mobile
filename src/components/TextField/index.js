@@ -9,6 +9,7 @@ export function TextField({
   onChangeText,
   icon,
   multiline,
+  defaultValue,
   ...rest
 }) {
   return (
@@ -22,6 +23,7 @@ export function TextField({
             keyboardType={keyboardType}
             onChangeText={onChangeText || (() => {})}
             icon={icon}
+            value={defaultValue}
             {...rest}
           />
         )}
@@ -30,6 +32,7 @@ export function TextField({
             secureTextEntry={type === "password"}
             error={error}
             icon={icon}
+            defaultValue={defaultValue}
             onChangeText={onChangeText}
             multiline={multiline}
             {...rest}
