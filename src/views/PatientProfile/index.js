@@ -10,7 +10,7 @@ import { schema } from "./schema";
 import * as S from "./styles";
 
 export function PatientProfile({ navigation }) {
-  const { profile } = useProfile();
+  const { profile, setProfile } = useProfile();
   const [form, setForm] = useState(profile.data);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -26,6 +26,7 @@ export function PatientProfile({ navigation }) {
         if (response != null) {
           Alert.alert("Ops", response);
         } else {
+          setProfile({ ...profile, data: form });
           setLoading(false);
           Alert.alert("Ok", "Perfil atualizado com sucesso");
           return;

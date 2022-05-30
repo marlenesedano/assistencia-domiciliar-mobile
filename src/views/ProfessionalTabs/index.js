@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons, FontAwesome5, AntDesign } from "@expo/vector-icons";
 import { AttendanceList } from "../AttendanceList";
 import { PatientEvaluation } from "../PatientEvaluation";
+import { ProfessionalProfile } from "../ProfessionalProfile";
 import { theme } from "../../styles/theme";
 
 const Tab = createBottomTabNavigator();
@@ -90,7 +91,7 @@ export function ProfessionalTabs() {
       />
       <Tab.Screen
         name="Perfil"
-        component={PatientEvaluation}
+        component={ProfessionalProfile}
         options={{ tabBarIcon: icons.Profile }}
       />
     </Tab.Navigator>

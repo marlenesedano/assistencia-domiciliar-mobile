@@ -86,3 +86,8 @@ export async function findProfessionals(filter) {
 
   return professionals;
 }
+
+export async function updateProfile(professional) {
+  const professionalRef = doc(db, "professionals", professional.email);
+  setDoc(professionalRef, professional, { merge: true });
+}

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 import * as S from "./styles";
 
-export function PickerSelect({ items, onValueChange, label, error }) {
-  const [selectedValue, setSelectedValue] = useState();
+export function PickerSelect({ items, onValueChange, label, error, defaultValue }) {
+  const [selectedValue, setSelectedValue] = useState(defaultValue);
 
   return (
     <S.Container>

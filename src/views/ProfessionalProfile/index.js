@@ -1,34 +1,50 @@
 import { useState } from "react";
-
+import { Alert } from "react-native";
+import { useProfile } from "../../context/ProfileContext";
 import { Title } from "../../components/Title";
 import { TextField } from "../../components/TextField";
 import { Button } from "../../components/Button";
-import { Line } from "../../components/Line";
-import { PickerSelect } from "../../components/PickerSelect";
-import { ScrollBox } from "../../components/ScrollBox";
+import { updateProfile } from "../../services/patient";
 
 import { specialties } from "../../services/specialty";
 
 import { schema } from "./schema";
 
 import * as S from "./styles";
+import { PickerSelect } from "../../components/PickerSelect";
 
 export function ProfessionalProfile({ navigation }) {
-  const [form, setForm] = useState({});
+  const { profile, setProfile } = useProfile();
+  const [form, setForm] = useState(profile.data);
   const [errors, setErrors] = useState({});
-
-  const handleNext = async () => {
-    const validationErrors = schema.validate(form);
-    if (Object.keys(validationErrors).length === 0) {
-      navigation.navigate("RegisterProfessionalNext", form);
-      return;
-    }
-
-    setErrors(validationErrors);
-  };
+  const [loading, setLoading] = useState(false);
 
   const handleSelectedSpecialty = (selectedValue) => {
     updateForm("specialty", selectedValue);
+  };
+
+  const handleSubmit = async () => {
+    const validationErrors = schema.validate(form);
+    if (Object.keys(validationErrors).length === 0) {
+      setLoading(true);
+
+      try {
+        const response = await updateProfile(form);
+
+        if (response != null) {
+          Alert.alert("Ops", response);
+        } else {
+          setLoading(false);
+          setProfile({ ...profile, data: form });
+          Alert.alert("Ok", "Perfil atualizado com sucesso");
+          return;
+        }
+      } catch (error) {
+        Alert.alert("Ops", error.message);
+      }
+    }
+
+    setErrors(validationErrors);
   };
 
   const updateForm = (field, value) => {
@@ -36,50 +52,44 @@ export function ProfessionalProfile({ navigation }) {
   };
 
   return (
-    <ScrollBox>
-      <S.Container>
-        <Title>Cadastro de Profissional</Title>
-        <TextField
-          placeholder="Nome completo"
-          label="Nome completo"
-          onChangeText={(newValue) => updateForm("name", newValue)}
-          error={errors.name}
-        />
-        <TextField
-          placeholder="E-mail"
-          label="E-mail"
-          onChangeText={(newValue) => updateForm("email", newValue)}
-          error={errors.email}
-        />
-        <TextField
-          type="password"
-          placeholder="Senha"
-          label="Senha"
-          onChangeText={(newValue) => updateForm("password", newValue)}
-          error={errors.password}
-        />
-        <TextField
-          mask="(99) 99999-9999"
-          placeholder="(99) 99999-9999"
-          keyboardType="numeric"
-          label="Telefone"
-          onChangeText={(newValue) => updateForm("phone", newValue)}
-          error={errors.phone}
-        />
-        <S.Label>Especialidades</S.Label>
-        <PickerSelect
-          onValueChange={handleSelectedSpecialty}
-          items={specialties}
-          error={errors.specialty}
-        />
-        <Line />
-        <Button margin="10px 0px" onPress={handleNext}>
-          Próximo
-        </Button>
-        <Button type="secondary" onPress={() => navigation.navigate("Login")}>
-          Cancelar
-        </Button>
-      </S.Container>
-    </ScrollBox>
+    <S.Container>
+      <Title>Perfil do Profissional</Title>
+      <TextField
+        placeholder="Nome completo"
+        label="Nome completo"
+        onChangeText={(newValue) => updateForm("name", newValue)}
+        error={errors.name}
+        defaultValue={profile.data.name}
+      />
+      <TextField
+        placeholder="E-mail"
+        label="E-mail"
+        onChangeText={(newValue) => updateForm("email", newValue)}
+        error={errors.email}
+        defaultValue={profile.data.email}
+      />
+
+      <TextField
+        placeholder="(99) 99999-9999"
+        keyboardType="numeric"
+        label="Telefone"
+        onChangeText={(newValue) => updateForm("phone", newValue)}
+        error={errors.phone}
+        defaultValue={profile.data.phone}
+      />
+      <S.Label>Especialidades</S.Label>
+      <PickerSelect
+        onValueChange={handleSelectedSpecialty}
+        items={specialties}
+        defaultValue={profile.data.specialty}
+        error={errors.specialty}
+      />
+      <Button margin="10px 0px" onPress={handleSubmit} isLoading={loading}>
+        Alterar Dados
+      </Button>
+      <Button type="secondary" onPress={() => navigation.navigate("Login")}>
+        Cancelar
+      </Button>
+    </S.Container>
   );
 }
