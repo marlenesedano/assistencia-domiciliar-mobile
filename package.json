@@ -2,6 +2,7 @@
   "name": "assistencia-domiciliar-mobile",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "expo start --dev-client",
     "android": "expo run:android",
@@ -18,6 +19,7 @@
     "@expo-google-fonts/ibm-plex-sans": "^0.2.2",
     "@expo-google-fonts/mukta-vaani": "^0.2.2",
     "@expo/vector-icons": "^12.0.5",
+    "@faker-js/faker": "^7.1.0",
     "@react-native-picker/picker": "^2.4.1",
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/native": "^6.0.10",
