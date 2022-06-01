@@ -15,6 +15,7 @@ describe("<Button />", () => {
 
     const currentLabel = tree.children[0];
 
+    expect(tree.children.length).toBe(1);
     expect(currentLabel.children[0]).toBe("My Label");
   });
 
