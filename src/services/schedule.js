@@ -12,10 +12,10 @@ import { db } from "./firebase";
 
 const schedulesCollection = collection(db, "schedules");
 
-export async function createSchedule(schedule) {
+export async function createSchedule(schedule, status) {
   await addDoc(schedulesCollection, {
     ...schedule,
-    status: "pending",
+    status: status || "pending",
     createdAt: new Date(),
   });
 }
