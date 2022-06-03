@@ -62,7 +62,11 @@ export function SearchProfessionalProfile({ route, navigation, stars }) {
       >
         Solicitar Agendamento
       </Button>
-      <Button margin="10px 0px 0px 0px" type="secondary">
+      <Button
+        margin="10px 0px 0px 0px"
+        type="secondary"
+        onPress={() => navigation.navigate("PatientTabs")}
+      >
         Voltar
       </Button>
     </S.Container>

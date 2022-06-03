@@ -34,3 +34,8 @@ export const Especialty = styled.Text`
   color: #696969;
   margin-top: 8px;
 `;
+
+export const Remote = styled.Text`
+  font-size: 14px;
+  color: #696969;
+`;
