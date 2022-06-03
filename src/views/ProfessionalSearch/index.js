@@ -7,6 +7,7 @@ import { ProfessionalCard } from "./ProfessionalCard";
 import { PresencialService } from "./PresencialService";
 import { ServiceModality } from "./ServiceModality";
 import { RemoteService } from "./RemoteService";
+import { ScrollBox } from "../../components/ScrollBox";
 
 import * as S from "./styles";
 
@@ -26,7 +27,7 @@ export function ProfessionalSearch({ navigation }) {
   }, [searchFilters]);
 
   return (
-    <>
+    <ScrollBox>
       {currentScreen === "ServiceModality" && (
         <ServiceModality
           setCurrentScreen={setCurrentScreen}
@@ -66,6 +67,6 @@ export function ProfessionalSearch({ navigation }) {
           </S.ListProfessionals>
         </S.Container>
       )}
-    </>
+    </ScrollBox>
   );
 }
