@@ -30,9 +30,11 @@ export function Login({ navigation }) {
       signInWithEmailAndPassword(auth, email, password)
         .then(() => {
           if (profile?.type === "professional") {
+            clearForm();
             setProfile(profile);
             navigation.navigate("ProfessionalTabs");
           } else if (profile?.type === "patient") {
+            clearForm();
             setProfile(profile);
             navigation.navigate("PatientTabs");
           } else {
@@ -48,6 +50,11 @@ export function Login({ navigation }) {
     setErrors(validationErrors);
   };
 
+  const clearForm = () => {
+    setEmail("");
+    setPassword("");
+  };
+
   return (
     <S.Container>
       <Title>Faça seu login</Title>
@@ -55,12 +62,14 @@ export function Login({ navigation }) {
         placeholder="E-mail"
         label="E-mail"
         error={errors.email}
+        defaultValue={email}
         onChangeText={(value) => setEmail(value)}
       />
       <TextField
         type="password"
         placeholder="Senha"
         label="Senha"
+        defaultValue={password}
         error={errors.password}
         onChangeText={(value) => setPassword(value)}
       />

@@ -88,7 +88,7 @@ export function ProfessionalProfile({ navigation }) {
         Alterar Dados
       </Button>
       <Button type="secondary" onPress={() => navigation.navigate("Login")}>
-        Cancelar
+        Sair do Sistema
       </Button>
     </S.Container>
   );
