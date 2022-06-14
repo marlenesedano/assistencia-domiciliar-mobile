@@ -1,4 +1,4 @@
-import { FontAwesome5, Feather } from "@expo/vector-icons";
+import { FontAwesome5, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Alert } from "react-native";
 import { Button } from "../../components/Button";
 import { Line } from "../../components/Line";
@@ -78,6 +78,12 @@ export function Schedule({ navigation, route }) {
           <Feather name="phone" size={24} color="black" />
           <S.PersonPhone>
             {profile.type === "patient" ? professional.phone : patient.phone}
+          </S.PersonPhone>
+        </S.Contact>
+        <S.Contact marginTop="10px">
+          <MaterialCommunityIcons name="email-outline" size={24} color="black" />
+          <S.PersonPhone>
+            {profile.type === "patient" ? professional.email : patient.email}
           </S.PersonPhone>
         </S.Contact>
       </S.Whapper>

@@ -1,4 +1,4 @@
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 
 export const Container = styled.View`
   padding: 80px 30px 0px 30px;
@@ -40,10 +40,12 @@ export const PersonPhone = styled.Text`
 `;
 
 export const Contact = styled.View`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 20px 0px 0px 10px;
+  ${({ marginTop }) => css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: ${marginTop || "20px"} 0px 0px 10px;
+  `}
 `;
 
 export const Label = styled.Text`
