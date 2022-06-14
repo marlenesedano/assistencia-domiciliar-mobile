@@ -1,7 +1,7 @@
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useIsFocused } from "@react-navigation/native";
 import { useState, useEffect } from "react";
-import { findSchedules } from "../../services/schedule";
+import { findSchedules, schedulesAvg } from "../../services/schedule";
 import { useProfile } from "../../context/ProfileContext";
 import { Line } from "../../components/Line";
 import { Star } from "../../components/Star";
@@ -21,25 +21,7 @@ export function PatientEvaluation() {
 
   async function loadSchedules() {
     const response = await findSchedules(profile);
-
-    const avgResult = response.reduce(
-      (averageAcc, scheduleItem) => {
-        if (!scheduleItem.stars) {
-          return averageAcc;
-        }
-
-        const sum = averageAcc.sum + scheduleItem.stars;
-        const count = averageAcc.count + 1;
-
-        return {
-          sum,
-          count,
-          avg: sum / count,
-          schedules: [...averageAcc.schedules, scheduleItem],
-        };
-      },
-      { sum: 0, count: 0, avg: 0, schedules: [] },
-    );
+    const avgResult = schedulesAvg(response);
     setAverage(avgResult);
   }
 

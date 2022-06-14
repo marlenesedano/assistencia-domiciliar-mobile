@@ -62,6 +62,7 @@ export function ProfessionalSearch({ navigation }) {
                 key={professional.email}
                 professional={professional}
                 navigation={navigation}
+                stars={professional.avg}
               />
             ))}
           </S.ListProfessionals>

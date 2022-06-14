@@ -51,3 +51,24 @@ export async function updateStars(id, stars) {
   const scheduleRef = doc(db, "schedules", id);
   setDoc(scheduleRef, { stars }, { merge: true });
 }
+
+export function schedulesAvg(schedules) {
+  return schedules.reduce(
+    (averageAcc, scheduleItem) => {
+      if (!scheduleItem.stars) {
+        return averageAcc;
+      }
+
+      const sum = averageAcc.sum + scheduleItem.stars;
+      const count = averageAcc.count + 1;
+
+      return {
+        sum,
+        count,
+        avg: sum / count,
+        schedules: [...averageAcc.schedules, scheduleItem],
+      };
+    },
+    { sum: 0, count: 0, avg: 0, schedules: [] },
+  );
+}

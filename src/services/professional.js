@@ -10,6 +10,7 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "./firebase";
 import { getSpecialtyName } from "./specialty";
+import { findSchedules, schedulesAvg } from "./schedule";
 
 export async function getProfessionalByEmail(email) {
   const docRef = doc(db, "professionals", email);
@@ -84,7 +85,24 @@ export async function findProfessionals(filter) {
     });
   });
 
+  for (let index = 0; index < professionals.length; index += 1) {
+    // eslint-disable-next-line no-await-in-loop
+    const avg = await evaluationAvg(professionals[index]);
+    professionals[index].avg = avg;
+  }
+
   return professionals;
+}
+
+export async function evaluationAvg(professional) {
+  const response = await findSchedules({
+    type: "professional",
+    data: professional,
+  });
+
+  const avgResult = schedulesAvg(response);
+
+  return avgResult.avg;
 }
 
 export async function updateProfile(professional) {
