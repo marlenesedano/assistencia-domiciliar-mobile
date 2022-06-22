@@ -17,6 +17,7 @@ import { RegisterProfessional } from "./src/views/RegisterProfessional";
 import { ProfessionalSearch } from "./src/views/ProfessionalSearch";
 import { RegisterProfessionalNext } from "./src/views/RegisterProfessionalNext";
 import { NewSchedule } from "./src/views/NewSchedule";
+import { NewScheduleRemote } from "./src/views/NewScheduleRemote";
 import { SearchProfessionalProfile } from "./src/views/SearchProfessionalProfile";
 import { AttendanceList } from "./src/views/AttendanceList";
 import { Schedule } from "./src/views/Schedule";
@@ -58,6 +59,7 @@ export default function App() {
               component={RegisterProfessionalNext}
             />
             <Screen name="NewSchedule" component={NewSchedule} />
+            <Screen name="NewScheduleRemote" component={NewScheduleRemote} />
             <Screen name="AttendanceList" component={AttendanceList} />
             <Screen name="Schedule" component={Schedule} />
             <Screen name="PatientTabs" component={PatientTabs} />

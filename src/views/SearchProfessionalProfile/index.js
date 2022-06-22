@@ -12,7 +12,7 @@ import { Line } from "../../components/Line";
 import { Button } from "../../components/Button";
 import * as S from "./styles";
 
-export function SearchProfessionalProfile({ route, navigation, stars }) {
+export function SearchProfessionalProfile({ route, navigation }) {
   const professional = route.params;
 
   const handlePhoneClick = () => {
@@ -32,7 +32,7 @@ export function SearchProfessionalProfile({ route, navigation, stars }) {
           <S.Label>{professional.specialty}</S.Label>
         </S.Wrapper>
       </S.Header>
-      <Star stars={stars} size={22} />
+      <Star stars={professional.avg} size={22} />
       <Line />
       <TouchableWithoutFeedback onPress={handlePhoneClick}>
         <S.Content>
@@ -58,10 +58,30 @@ export function SearchProfessionalProfile({ route, navigation, stars }) {
       <Line />
       <Button
         margin="15px 0px 0px 0px"
-        onPress={() => navigation.navigate("NewSchedule", professional)}
+        onPress={() =>
+          navigation.navigate("NewSchedule", {
+            ...professional,
+            modality: "presential",
+          })
+        }
+        type="secondary"
       >
-        Solicitar Agendamento
+        Solicitar Atendimento Presencial
       </Button>
+      {professional.acceptRemote && (
+        <Button
+          margin="15px 0px 0px 0px"
+          onPress={() =>
+            navigation.navigate("NewScheduleRemote", {
+              ...professional,
+              modality: "remote",
+            })
+          }
+          type="secondary"
+        >
+          Solicitar Atendimento Remoto
+        </Button>
+      )}
       <Button
         margin="10px 0px 0px 0px"
         type="secondary"

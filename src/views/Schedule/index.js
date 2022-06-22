@@ -62,7 +62,7 @@ export function Schedule({ navigation, route }) {
   return (
     <S.Container>
       <Title>Agendamento</Title>
-      <S.Whapper>
+      <S.Wrapper>
         <S.Information>
           <FontAwesome5 name="user-circle" size={50} color="black" />
           <S.Content>
@@ -86,18 +86,22 @@ export function Schedule({ navigation, route }) {
             {profile.type === "patient" ? professional.email : patient.email}
           </S.PersonPhone>
         </S.Contact>
-      </S.Whapper>
-      <S.Label>Endereço</S.Label>
-      <S.Whapper>
-        <S.LabelAddress>{`${schedule.street}, ${schedule.number}`}</S.LabelAddress>
-        <S.LabelAddress>{`${schedule.city.name} - ${schedule.state.uf}, CEP: ${schedule.cep}`}</S.LabelAddress>
-        {!!schedule.complement && (
-          <>
-            <S.LabelAddress>{` `}</S.LabelAddress>
-            <S.LabelAddress>{`Complemento: ${schedule.complement}`}</S.LabelAddress>
-          </>
-        )}
-      </S.Whapper>
+      </S.Wrapper>
+      {schedule.modality !== "remote" && (
+        <>
+          <S.Label>Endereço</S.Label>
+          <S.Wrapper>
+            <S.LabelAddress>{`${schedule.street}, ${schedule.number}`}</S.LabelAddress>
+            <S.LabelAddress>{`${schedule.city.name} - ${schedule.state.uf}, CEP: ${schedule.cep}`}</S.LabelAddress>
+            {!!schedule.complement && (
+              <>
+                <S.LabelAddress>{` `}</S.LabelAddress>
+                <S.LabelAddress>{`Complemento: ${schedule.complement}`}</S.LabelAddress>
+              </>
+            )}
+          </S.Wrapper>
+        </>
+      )}
       <S.Status>Status:</S.Status>
       <S.Label>{statusMessages[schedule.status]}</S.Label>
       {schedule.stars > 0 && profile.type === "professional" && (
@@ -117,6 +121,10 @@ export function Schedule({ navigation, route }) {
               stars={schedule.stars}
               onStarChanged={handleStarsChange}
             />
+            <Line />
+            <Button margin="10px 0px 0px 0px" onPress={() => navigation.goBack()}>
+              Voltar
+            </Button>
           </S.EvaluationContainer>
         </>
       )}

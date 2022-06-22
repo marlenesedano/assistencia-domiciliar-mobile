@@ -1,32 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Alert } from "react-native";
 import { Button } from "../../components/Button";
 import { Line } from "../../components/Line";
 import { ScrollBox } from "../../components/ScrollBox";
 import { TextField } from "../../components/TextField";
 import { Title } from "../../components/Title";
-import { PickerSelect } from "../../components/PickerSelect";
-import { getCities, getUfs } from "../../services/locality";
 import { createSchedule } from "../../services/schedule";
 import { useProfile } from "../../context/ProfileContext";
 import { schema } from "./schema";
 
 import * as S from "./styles";
 
-export function NewSchedule({ navigation, route }) {
-  const professional = route.params;
+export function NewScheduleRemote({ navigation, route }) {
+  const { modality, ...professional } = route.params;
   const { profile } = useProfile();
-  const [states, setStates] = useState("");
-  const [selectedState, setSelectedState] = useState({ state: {} });
-  const [selectedCity, setSelectedCity] = useState({ city: {} });
-  const [cities, setCities] = useState("");
   const [errors, setErrors] = useState({});
   const [scheduleDate, setDataSchedule] = useState("");
   const [scheduleHour, setScheduleHour] = useState();
-  const [cep, setCep] = useState();
-  const [street, setStreet] = useState("");
-  const [number, setNumber] = useState("");
-  const [complement, setComplement] = useState("");
+
   const [loading, setLoading] = useState(false);
 
   const showScheduleError =
@@ -35,15 +26,10 @@ export function NewSchedule({ navigation, route }) {
   const handleSubmit = async () => {
     try {
       const currentForm = {
-        state: selectedState,
-        city: selectedCity,
         scheduleDate,
         scheduleHour,
-        cep,
-        street,
-        number,
-        complement,
         professional,
+        modality,
         patient: { ...profile.data, id: profile.data.email },
       };
 
@@ -73,33 +59,6 @@ export function NewSchedule({ navigation, route }) {
     }
   };
 
-  useEffect(() => {
-    (async function loadUfs() {
-      const response = await getUfs();
-
-      const pickerStates = response.map((item) => {
-        return { value: { uf: item.sigla, name: item.nome }, label: item.nome };
-      });
-
-      setStates(pickerStates);
-    })();
-  }, []);
-
-  useEffect(() => {
-    (async function loadCities() {
-      const response = await getCities(selectedState.uf);
-
-      const pickerCities = response.map((item) => {
-        return {
-          value: { id: item.id, name: item.nome },
-          label: item.nome,
-        };
-      });
-
-      setCities(pickerCities);
-    })();
-  }, [selectedState]);
-
   return (
     <ScrollBox>
       <S.Container>
@@ -122,42 +81,6 @@ export function NewSchedule({ navigation, route }) {
           />
         </S.Wrapper>
         {showScheduleError && <S.ErrorLabel>{errors.schedule}</S.ErrorLabel>}
-        <TextField
-          label="CEP"
-          mask="99999-999"
-          placeholder="CEP"
-          error={errors.cep}
-          onChangeText={(value) => setCep(value)}
-        />
-        <PickerSelect
-          label="Estado"
-          items={[{ value: {}, label: "Escolha seu estado" }, ...states]}
-          onValueChange={(value) => setSelectedState(value)}
-          error={errors["state.uf"]}
-        />
-        <PickerSelect
-          label="Cidade"
-          items={[{ value: {}, label: "Escolha sua cidade" }, ...cities]}
-          onValueChange={(value) => setSelectedCity(value)}
-          error={errors["city.id"]}
-        />
-        <TextField
-          label="Rua"
-          placeholder="Informe a Rua"
-          error={errors.street}
-          onChangeText={(value) => setStreet(value)}
-        />
-        <TextField
-          label="Numero"
-          placeholder="Informe o Número"
-          error={errors.number}
-          onChangeText={(value) => setNumber(value)}
-        />
-        <TextField
-          label="Complemento"
-          placeholder="Informe o Complemento"
-          onChangeText={(value) => setComplement(value)}
-        />
         <Line />
         <Button margin="10px 0px 20px 0" onPress={handleSubmit} isLoading={loading}>
           Novo Agendamento

@@ -13,7 +13,7 @@ export const Content = styled.View`
   margin-left: 32px;
 `;
 
-export const Whapper = styled.View`
+export const Wrapper = styled.View`
   display: flex;
   border: 1px;
   border-radius: 14px;
